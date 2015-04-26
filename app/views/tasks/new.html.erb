@@ -1,0 +1,5 @@
+<%= simple_form_for @task, url: project_tasks_path(@project, @task), html: {role: 'form'} do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.submit "Create", class: 'btn btn-primary' %>
+<% end %>

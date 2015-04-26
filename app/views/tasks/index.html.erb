@@ -1,0 +1,33 @@
+<div style="padding-bottom: 40px;">
+  <a href="<%= new_project_task_path(@project) %>">
+    <button type="button" class="btn btn-default pull-right" aria-label="Right Align">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Task
+    </button>
+  </a>
+</div>
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <% if @tasks.any? %>
+      <ul class="sortable">
+        <%= render @tasks.select{|task| task.status == 'open'} %>
+      </ul>
+    <% else %>
+      <p>No tasks found <%= link_to "Create Task", new_project_task_path(@project) %></p>
+    <% end %>
+  </div>
+
+  <div class="col-sm-6">
+    <% if @tasks.any? %>
+      <ul class="sortable">
+        <%= render @tasks.reject{|task| task.status == 'open'}  %>
+      </ul>
+    <% else %>
+      <p>No tasks found <%= link_to "Create Task", new_project_task_path(@project) %></p>
+    <% end %>
+  </div>
+</div>
+
+
+
