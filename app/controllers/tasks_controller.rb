@@ -19,12 +19,15 @@ class TasksController < ApplicationController
     end
   end
 
-  def show 
-
+  def edit
+    @task = Task.find(params[:id])
   end
 
   def update
+    task = Task.find(params[:id])
+    task.update_attributes(tasks_params)
 
+    redirect_to project_tasks_path(project)
   end
 
    def sort
@@ -38,7 +41,7 @@ class TasksController < ApplicationController
   private 
 
   def tasks_params
-    params.require(:task).permit(:name, :description)
+    params.require(:task).permit(:name, :description, :status)
   end
 
   def project

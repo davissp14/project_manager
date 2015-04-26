@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       put :sort, on: :collection 
     end
   end
+  resources :tags
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

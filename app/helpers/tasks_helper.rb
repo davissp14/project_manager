@@ -2,11 +2,11 @@ module TasksHelper
 
   def task_label_status(task)
     case task.status
-    when 'complete'
+    when 'finished'
       'success'
     when 'abandoned'
       'default'
-    when 'open'
+    when 'active'
       'primary'
     when 'pending'
       'info'

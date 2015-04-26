@@ -11,7 +11,7 @@
   <div class="col-sm-6">
     <% if @tasks.any? %>
       <ul class="sortable">
-        <%= render @tasks.select{|task| task.status == 'open'} %>
+        <%= render @tasks.select{|task| task.status == 'active'} %>
       </ul>
     <% else %>
       <p>No tasks found <%= link_to "Create Task", new_project_task_path(@project) %></p>
@@ -21,7 +21,7 @@
   <div class="col-sm-6">
     <% if @tasks.any? %>
       <ul class="sortable">
-        <%= render @tasks.reject{|task| task.status == 'open'}  %>
+        <%= render @tasks.reject{|task| task.status == 'active'}  %>
       </ul>
     <% else %>
       <p>No tasks found <%= link_to "Create Task", new_project_task_path(@project) %></p>
