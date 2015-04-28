@@ -19,7 +19,7 @@
           <a href="<%= projects_path %>">Projects</a>
         </li>
         <li class="<%= 'active' if params[:controller] == 'tags' %>">
-          <a href="<%= tags_path %>">Tags</a>
+          <a href="<%= project_tags_path(@project) %>">Tags</a>
         </li>
       </ul>
 

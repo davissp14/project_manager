@@ -1,12 +1,17 @@
+<h2 class='project-title'><%= @project.name %></h2>
+  <p class='description'>
+    <%= @project.description %> 
+  </p>
+
 <div class="row">
   <div class="col-md-12">
-    <div class="btn-group btn-group-md <%= 'active' if params[:controller] == 'projects' %>" role="group" aria-label="...">
+    <div class="btn-group btn-group-md" role="group" aria-label="...">
       <a href="#" 
-        class="btn btn-default <%= 'active' if current_controller('projects') %>">
+        class="btn btn-default <%= 'active' if current_controller('feeds') %>">
         Feed
       </a>
       <a href="#" 
-        class="btn btn-default <%= 'active' if current_controller('projects') %>">
+        class="btn btn-default <%= 'active' if current_controller('discussions') %>">
         Discussion
       </a>
       <a href="<%= project_milestones_path(@project) %>" 
@@ -16,6 +21,10 @@
       <a href="<%= project_tasks_path(@project) %>" 
         class="btn btn-default <%= 'active' if current_controller('tasks') %>">
         Tasks
+      </a>
+      <a href="<%= project_tags_path(@project) %>" 
+        class="btn btn-default <%= 'active' if current_controller('tags') %>">
+        Tags
       </a>
     </div>
     
