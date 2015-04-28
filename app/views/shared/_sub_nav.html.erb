@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="btn-group btn-group-md <%= 'active' if params[:controller] == 'projects' %>" role="group" aria-label="...">
+      <a href="#" 
+        class="btn btn-default <%= 'active' if current_controller('projects') %>">
+        Feed
+      </a>
+      <a href="#" 
+        class="btn btn-default <%= 'active' if current_controller('projects') %>">
+        Discussion
+      </a>
+      <a href="<%= project_milestones_path(@project) %>" 
+        class="btn btn-default <%= 'active' if current_controller('milestones') %>">
+        Milestones
+      </a>
+      <a href="<%= project_tasks_path(@project) %>" 
+        class="btn btn-default <%= 'active' if current_controller('tasks') %>">
+        Tasks
+      </a>
+    </div>
+    
+    <%= capture(&block) %>
+  </div>
+</div>

@@ -1,33 +1,22 @@
-<div style="padding-bottom: 40px;">
-  <a href="<%= new_project_task_path(@project) %>">
-    <button type="button" class="btn btn-default pull-right" aria-label="Right Align">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Task
-    </button>
+<%= sub_nav do %>
+  <a href="<%= new_project_task_path(@project) %>" class='btn btn-default btn-md pull-right' aria-label="Right Align">
+    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Task
   </a>
-</div>
+<% end %>
 
+<div class="sub-header col-md-12">
+  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+  <strong><%= pluralize(@tasks.size, "Open Tasks") %></strong>
+</div>
 
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-sm-12 task-col">
     <% if @tasks.any? %>
       <ul class="sortable">
-        <%= render @tasks.select{|task| task.status == 'active'} %>
-      </ul>
-    <% else %>
-      <p>No tasks found <%= link_to "Create Task", new_project_task_path(@project) %></p>
-    <% end %>
-  </div>
-
-  <div class="col-sm-6">
-    <% if @tasks.any? %>
-      <ul class="sortable">
-        <%= render @tasks.reject{|task| task.status == 'active'}  %>
+        <%= render @tasks %>
       </ul>
     <% else %>
       <p>No tasks found <%= link_to "Create Task", new_project_task_path(@project) %></p>
     <% end %>
   </div>
 </div>
-
-
-

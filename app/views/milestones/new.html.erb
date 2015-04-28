@@ -1,0 +1,5 @@
+<%= simple_form_for @milestone, url: project_milestones_path(@project, @milestone), html: {role: 'form'} do |f| %>
+    <%= f.input :title %>
+    <%= f.input :scope %>
+    <%= f.submit "Create", class: 'btn btn-primary' %>
+<% end %>

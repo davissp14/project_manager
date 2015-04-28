@@ -1,12 +1,12 @@
 
 <li data-project-id="<%= task.project.name %>" data-id="<%= task.id %>" class="list-group-item">
-    <h5>
-      <span class="label label-<%=task_label_status(task)%> pull-right">
-        <%=task.status.try(:capitalize)%>
-      </span>
-    </h5>
-  <a href="<%= edit_project_task_path(task.project, task) %>"
-    <h5 class="list-group-item-heading"><%= task.name %></h5>
+    <h4>
+      <a href="#" class="comment-icon pull-right">
+        <span class="glyphicon glyphicon-comment"></span> 0
+      </a>
+    </h4>
+  <a href="<%= edit_project_task_path(task.project, task) %>">
+    <%= task.name %>
   </a>
   <p class="list-group-item-text created_at">
     <%= "Created on #{task.created_at.strftime('%B %d, %Y')}" %>

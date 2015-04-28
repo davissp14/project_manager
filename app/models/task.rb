@@ -1,5 +1,6 @@
 class Task < ActiveRecord::Base
   belongs_to :project
+  belongs_to :milestone
   has_many :tags
   has_many :comments
 

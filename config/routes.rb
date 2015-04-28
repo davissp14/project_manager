@@ -4,7 +4,8 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'projects#index'
-  resources :projects do 
+  resources :projects do
+    resources :milestones
     resources :tasks do 
       put :sort, on: :collection 
     end

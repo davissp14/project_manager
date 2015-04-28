@@ -2,8 +2,8 @@
 
 <ul class="list-group">
   <% @projects.each do |project| %>
-    <a href="<%= project_tasks_path(project) %>" class="list-group-item">
-      <span class="badge"><%= project.tasks.size %></span>
+    <a href="<%= project_path(project) %>" class="list-group-item">
+      <span class="badge"><%= project.milestones.size %></span>
       <h4 class="list-group-item-heading"><%= project.name %></h4>
       <p class="list-group-item-text"><%= project.description %></p>
     </a>

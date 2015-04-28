@@ -1,3 +1,10 @@
-// Place all the styles related to the projects controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.sub-header {
+  position: relative;
+  margin-top: 20px;
+  margin-bottom: -1px;
+  background-color: #f8f8f8;
+  border: 1px solid #e5e5e5;
+  border-radius: 3px 3px 0 0;
+  padding: 10px;
+}
