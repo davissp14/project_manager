@@ -4,7 +4,6 @@ class CreateComments < ActiveRecord::Migration
       t.integer :project_id
       t.integer :task_id
       t.text :text
-
       t.timestamps null: false
     end
   end

@@ -1,12 +1,7 @@
-<h2 class='project-title'><%= @project.name %></h2>
-  <p class='description'>
-    <%= @project.description %> 
-  </p>
-
 <div class="row">
   <div class="col-md-12">
     <div class="btn-group btn-group-md" role="group" aria-label="...">
-      <a href="#" 
+      <a href="<%= project_feeds_path(current_project) %>" 
         class="btn btn-default <%= 'active' if current_controller('feeds') %>">
         Feed
       </a>
@@ -14,20 +9,16 @@
         class="btn btn-default <%= 'active' if current_controller('discussions') %>">
         Discussion
       </a>
-      <a href="<%= project_milestones_path(@project) %>" 
+      <a href="<%= project_milestones_path(current_project) %>" 
         class="btn btn-default <%= 'active' if current_controller('milestones') %>">
         Milestones
       </a>
-      <a href="<%= project_tasks_path(@project) %>" 
+      <a href="<%= project_tasks_path(current_project) %>" 
         class="btn btn-default <%= 'active' if current_controller('tasks') %>">
         Tasks
       </a>
-      <a href="<%= project_tags_path(@project) %>" 
-        class="btn btn-default <%= 'active' if current_controller('tags') %>">
-        Tags
-      </a>
     </div>
     
-    <%= capture(&block) %>
+    <%= capture(&block) if block %>
   </div>
 </div>

@@ -18,6 +18,18 @@
 </head>
   <body>
     <%= render 'layouts/nav' %>
+    <div class='container' style="padding-left: 0px;">
+      <% if current_project.present? %>
+        <h3 class='project-title'>
+          <span class="" aria-hidden="true" style='color: #ffef99;'></span>
+          <%= link_to(current_project.name, project_feeds_path(current_project.name)) %>
+        </h3>
+        <p class='description'>
+          <%= current_project.description %> 
+        </p>
+      <% end %>
+    </div>
+    <div class='horizontal-rule'></div>
     <div class='container'>
       <%= yield %>
     </div>

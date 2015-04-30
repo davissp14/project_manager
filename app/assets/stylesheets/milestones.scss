@@ -1,3 +1,16 @@
 // Place all the styles related to the milestones controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.empty-container {
+  padding: 100px; 
+  text-align: center;
+  background-color: #fafafa;
+  border: 1px solid #e5e5e5
+}
+
+.empty-container p {
+    font-size: 18px;
+    font-weight: bold; 
+}

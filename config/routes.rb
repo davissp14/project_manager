@@ -7,10 +7,12 @@ Rails.application.routes.draw do
   resources :projects do
     resources :milestones
     resources :tasks do 
-      put :sort, on: :collection 
+      put :sort, on: :collection
+      resources :comments
     end
+    resources :tags
+    resources :feeds
   end
-  resources :tags
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

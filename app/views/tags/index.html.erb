@@ -1,5 +1,5 @@
 <%= sub_nav do %>
-  <a href="<%= new_project_tag_path(@project) %>" class='btn btn-default btn-md pull-right' aria-label="Right Align">
+  <a href="<%= new_project_tag_path(current_project) %>" class='btn btn-default btn-md pull-right' aria-label="Right Align">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Tag
   </a>
 <% end %>
@@ -16,7 +16,7 @@
         <%= render @tags %>
       </ul>
     <% else %>
-      <p>No tasks found <%= link_to "Create Tag", new_project_tag_path(@project) %></p>
+      <p>No tasks found <%= link_to "Create Tag", new_project_tag_path(current_project) %></p>
     <% end %>
   </div>
 </div>

@@ -1,22 +1,19 @@
 class MilestonesController < ApplicationController
 
   def index
-    @project = Project.find_by_name(params[:project_id])
-    @milestones = @project.milestones.all
+    @milestones = current_project.milestones.all
   end
 
   def new
-    @project = Project.find_by_name(params[:project_id])
-    @milestone = @project.milestones.new
+    @milestone = current_project.milestones.new
   end
 
   def create 
-    @project = Project.find_by_name(params[:project_id])
-    @milestone = @project.milestones.new(milestones_params)
+    @milestone = current_project.milestones.new(milestones_params)
 
     if @milestone.valid?
       @milestone.save
-      redirect_to project_milestones_path(@project, @milestone)
+      redirect_to project_milestones_path(current_project @milestone)
     else
       render :new
     end

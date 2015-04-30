@@ -73,3 +73,37 @@ p.description {
   color: #666;
   word-wrap: break-word; 
 }
+
+
+.show-col {
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+}
+
+.edit-icon {
+  color: #999;
+}
+
+.edit-icon:hover {
+  color: #000;
+}
+
+
+.task-title {
+  font-size: 28px;
+  border-bottom: 1px;
+}
+
+.horizontal-rule {
+    border-bottom: 1px solid #eee;
+    margin-top: 10px;
+    margin-bottom: 10px; 
+    position: relative;
+}
+
+.sub-horizontal-rule {
+      border-bottom: 1px solid #eee;
+    margin-top: 10px;
+    padding-bottom: 10px; 
+    position: relative;
+}
