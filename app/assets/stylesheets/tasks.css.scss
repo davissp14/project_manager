@@ -1,24 +1,26 @@
-h2.project-title {
-  margin-top: 0px; 
+.sortable-placeholder {
+  border: 1px dashed #CCC;
+  background-color: #f9f9f9;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+ 
+.sortable {
+  padding: 0px;
+  height: 450px;
+  overflow-y: scroll; 
 }
 
 
 li.list-group-item {
-  padding-top: 0px;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding: 0 0 10px 15px; 
 }
 
-li.list-group-item:first-child {
+li.list-group-item:first-child, li.list-group-item:last-child {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
-
-li.list-group-item:last-child {
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-}
-
 
 li.list-group-item:hover{
   background-color: #fafafa;
@@ -39,6 +41,7 @@ li.list-group-item a:hover {
 li.list-group-item a.comment-icon {
   text-decoration: none;
   padding: 8px;
+  top: 5px;
   color: #eeeeee;
   font-size: 14px;
 }
@@ -47,37 +50,16 @@ li.list-group-item a.comment-icon:hover {
   color: #999999;
 }
 
- ul {
-  list-style-type: none;
- }
-
-.sortable-placeholder {
-  border: 1px dashed #CCC;
-  background-color: #f9f9f9;
-  height: 40px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
- 
-.sortable {
-  padding: 0px;
-}
 
 .created_at {
   color: #999999;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 p.description {
   font-size: 16px;
   color: #666;
   word-wrap: break-word; 
-}
-
-
-.show-col {
-  padding: 10px;
-  border: 1px solid #e5e5e5;
 }
 
 .edit-icon {
@@ -90,20 +72,18 @@ p.description {
 
 
 .task-title {
-  font-size: 28px;
+  font-size: 30px;
   border-bottom: 1px;
 }
 
-.horizontal-rule {
-    border-bottom: 1px solid #eee;
-    margin-top: 10px;
-    margin-bottom: 10px; 
-    position: relative;
+.icon_active {
+  color: #999999
 }
 
-.sub-horizontal-rule {
-      border-bottom: 1px solid #eee;
-    margin-top: 10px;
-    padding-bottom: 10px; 
-    position: relative;
+.task-label {
+  width: 50px;
+  display: inline-block;
+  vertical-align: top;
+  padding-top: 5px;
 }
+

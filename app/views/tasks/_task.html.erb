@@ -1,14 +1,23 @@
 
 <li data-project-id="<%= task.project.name %>" data-id="<%= task.id %>" class="list-group-item">
-    <h4>
-      <a href="#" class="comment-icon pull-right">
-        <span class="glyphicon glyphicon-comment"></span> <%= task.comments.size %>
-      </a>
-    </h4>
+  <h4>
+    <a href="<%= project_task_path(current_project, task) %>" class="comment-icon pull-right">
+      <span class="glyphicon glyphicon-comment <%= highlight_icon?(task.comments.size) %>"></span> 
+      <span class="<%= highlight_icon?(task.comments.size) %>"> <%= task.comments.size %></span>
+    </a>
+  </h4>
+
+  <div class='task-label'>
+    <span class="label label-<%= task_label_status(task) %>" style=""><%= task.status.capitalize %></span>
+  </div>
+
+  <div style="display: inline-block;">
   <a href="<%= project_task_path(task.project, task) %>">
     <%= task.name %>
   </a>
+
   <p class="list-group-item-text created_at">
     <%= "Created on #{task.created_at.strftime('%B %d, %Y')}" %>
   </p>
+</div>
 </li>

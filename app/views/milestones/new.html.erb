@@ -1,5 +1,12 @@
-<%= simple_form_for @milestone, url: project_milestones_path(current_project, @milestone), html: {role: 'form'} do |f| %>
-    <%= f.input :title %>
-    <%= f.input :scope %>
-    <%= f.submit "Create", class: 'btn btn-primary' %>
-<% end %>
+<%= sub_nav %>
+
+<div class="item-container">
+    <div class="sub-header">
+        <strong>Create a new milestone</strong>
+    </div>
+    <%= simple_form_for @milestone, url: project_milestones_path(current_project, @milestone), html: {role: 'form'} do |f| %>
+        <%= f.input :title %>
+        <%= f.input :scope %>
+        <%= f.submit "Create", class: 'btn btn-primary' %>
+    <% end %>
+</div>

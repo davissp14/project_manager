@@ -1,34 +1,59 @@
+<div class='item-container' style="padding-top: 0px;">
+    <div class='right-btn'>
+        <% if @task.status == 'open' %>
+            <%= link_to raw("<span class=\"glyphicon glyphicon-minus-sign\"></span> Close task"), 
+                project_task_toggle_status_path(current_project, @task), 
+                class: 'btn btn-danger destroy',
+                method: :post %>
+        <% else %>
+            <%= link_to raw("<span class=\"glyphicon glyphicon-eye-open\"></span> Reopen task"), 
+                project_task_toggle_status_path(current_project, @task), 
+                class: 'btn btn-default destroy',
+                method: :post,
+                style: 'font-weight: bold;' %>
+        <% end %>
+    </div>
 
-
-<div class="row">
     <div class='task-header'>
         <div class='task-title'><%= @task.name %></div>
-        <h4 style="display: inline;"><span class="label label-success">Open</span></h4>
+        <h4 style="display: inline;">
+            <span class="label label-<%= task_label_status(@task) %>"><%= @task.status.capitalize %></span>
+        </h4>
         <span><strong>Task</strong></span>
         <span class='created_at'><%= "created on #{@task.created_at.strftime('%B %d, %Y')}" %></span>
     </div>
-    <div class='sub-horizontal-rule'></div>
-    <div class="sub-header col-md-12">
+
+    <div class="sub-header">
         <strong>Task</strong>
         <span class='created_at'><%= "created on #{@task.created_at.strftime('%B %d, %Y')}" %></span>
         <a href=<%= edit_project_task_path(@task.project, @task) %>>
             <span class='edit-icon pull-right glyphicon glyphicon-pencil'></span>
         </a>
     </div>
-    <div class="col-md-12 show-col text">
+    <div class="description text">
         <%= @task.description %>
     </div>
-</div>
-    
-<div class="row">
-    <div class="sub-header col-md-12">
-    </div>
-    <div class="col-md-12 show-col">
-        <%= simple_form_for @comment, url: new_project_task_comment_path(current_project, @task) do |f| %>
-            <%= f.input :text %>
-            <%= f.submit "Add Comment", class: 'btn btn-primary' %>
-        <% end %>
-    </div>
-</div>
 
+    <% @task.comments.each do |comment| %>
+        <div class="sub-header">
+            <strong>Comment</strong>
+            <span class='created_at'><%= "created on #{comment.created_at.strftime('%B %d, %Y')}" %></span>
+            <a href="<%= edit_project_task_comment_path(current_project, @task, comment) %>">
+                <span class='edit-icon pull-right glyphicon glyphicon-pencil'></span>
+            </a>
+        </div>
+        <div class="description text">
+            <%= comment.text %>
+        </div>
+    <% end %>
 
+    <div class="sub-header">
+        <strong>Create Comment </strong>
+    </div>
+
+    <%= simple_form_for Comment.new, url: project_task_comments_path(current_project, @task) do |f| %>
+        <%= f.input :text %>
+        <%= f.submit "Add Comment", class: 'btn btn-primary' %>
+    <% end %>
+
+</div>

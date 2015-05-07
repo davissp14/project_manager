@@ -1,24 +1,23 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="btn-group btn-group-md" role="group" aria-label="...">
-      <a href="<%= project_feeds_path(current_project) %>" 
-        class="btn btn-default <%= 'active' if current_controller('feeds') %>">
-        Feed
-      </a>
-      <a href="#" 
-        class="btn btn-default <%= 'active' if current_controller('discussions') %>">
-        Discussion
-      </a>
-      <a href="<%= project_milestones_path(current_project) %>" 
-        class="btn btn-default <%= 'active' if current_controller('milestones') %>">
-        Milestones
-      </a>
-      <a href="<%= project_tasks_path(current_project) %>" 
-        class="btn btn-default <%= 'active' if current_controller('tasks') %>">
-        Tasks
-      </a>
-    </div>
-    
-    <%= capture(&block) if block %>
+
+<div class="sub-nav col-sm-12">
+  <div class="btn-group btn-group-sm" role="group" aria-label="">
+    <a href="<%= project_feeds_path(current_project) %>" 
+      class="btn btn-default <%= 'active' if current_controller('feeds') %>">
+      Feed
+    </a>
+    <a href="#" 
+      class="btn btn-default <%= 'active' if current_controller('discussions') %>">
+      Discussion
+    </a>
+    <a href="<%= project_milestones_path(current_project) %>" 
+      class="btn btn-default <%= 'active' if current_controller('milestones') %>">
+      Milestones
+    </a>
+    <a href="<%= project_tasks_path(current_project) %>" 
+      class="btn btn-default <%= 'active' if current_controller('tasks') %>">
+      Tasks
+    </a>
   </div>
+  
+  <%= capture(&block) if block %>
 </div>

@@ -5,7 +5,12 @@ class TasksController < ApplicationController
   end
 
   def index
-    @tasks = current_project.tasks.order('priority ASC')
+    if params.has_key?(:filter)
+      @tasks = current_project.tasks.order('priority ASC').select{|task| task.status == params[:filter] }
+    else
+      @tasks = current_project.tasks.order('priority ASC')
+    end
+
   end
 
   def create
@@ -20,8 +25,7 @@ class TasksController < ApplicationController
   end
 
   def show
-    @task = Task.find(params[:id])
-    @comment = @task.comments.new
+    @task = current_project.tasks.find(params[:id])
   end
 
   def edit
@@ -31,8 +35,16 @@ class TasksController < ApplicationController
   def update
     task = Task.find(params[:id])
     task.update_attributes(tasks_params)
-
     redirect_to project_tasks_path(current_project)
+  end
+
+  def toggle_status
+    task = Task.find(params[:task_id])
+    
+    target_status = task.status == 'open' ? 'closed' : 'open'
+    task.update_attributes(status: target_status)
+
+    redirect_to project_task_path(current_project, task)
   end
 
    def sort
@@ -41,6 +53,7 @@ class TasksController < ApplicationController
     end
     render :nothing => true
   end
+
 
   private 
 

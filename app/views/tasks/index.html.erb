@@ -1,25 +1,28 @@
 <%= sub_nav do %>
-  <a href="<%= new_project_task_path(current_project) %>" class='btn btn-default btn-md pull-right' aria-label="Right Align">
+  <a href="<%= new_project_task_path(current_project) %>" class='btn btn-default btn-sm pull-right' aria-label="Right Align">
     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Task
   </a>
 <% end %>
 
-<div class="sub-header col-md-12">
-  <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
-  <strong><span><%= pluralize(@tasks.size, "Open Tasks") %></span></strong>
+<div class='item-container'>
+  <div class="sub-header">
+    <div class="open_closed">
+      <span class='open_close_item'>
+        <span class="glyphicon glyphicon-info-sign"></span><%= link_to "#{open_tasks.size} Open", project_tasks_path(current_project, filter: 'open') %>
+      </span>
+      <span class='open_close_item'>
+        <span class="glyphicon glyphicon-ok"></span><%= link_to "#{closed_tasks.size} Closed", project_tasks_path(current_project, filter: 'closed') %>
+      </span>
+    </div>
+  </div>
+
+  <% if @tasks.any? %>
+    <ul class='sortable'><%= render @tasks %></ul>
+  <% else %>
+     <div class='empty-container'>
+      <p>No tasks found.</p>
+      <span>Use the add task button above to create your tasks.</span>
+    </div>
+  <% end %>
 </div>
 
-<div class="row">
-  <div class="col-md-12 task-col">
-    <% if @tasks.any? %>
-      <ul class="sortable">
-        <%= render @tasks %>
-      </ul>
-    <% else %>
-       <div class='empty-container'>
-        <p>No tasks found.</p>
-        <span>Use the add task button above to create your tasks.</span>
-      </div>
-    <% end %>
-  </div>
-</div>

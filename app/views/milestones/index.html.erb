@@ -1,18 +1,18 @@
-<%= sub_nav do %>
-  <a href="<%= new_project_milestone_path(current_project) %>" class='btn btn-default btn-md pull-right' aria-label="Right Align">
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Milestone
-  </a>
-<% end %>
 
-<div class="sub-header col-md-12">
-  <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
-  <strong><%= pluralize(@milestones.size, "Active Milestone") %></strong>
-</div>
+  <%= sub_nav do %>
+    <a href="<%= new_project_milestone_path(current_project) %>" class='btn btn-default btn-sm pull-right' aria-label="Right Align">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Milestone
+    </a>
+  <% end %>
 
-<div class="row">
-  <div class="col-sm-12 task-col">
+  <div class='item-container'>
+    <div class="sub-header">
+      <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span>
+      <strong><%= pluralize(@milestones.size, "Active Milestone") %></strong>
+    </div>
+
     <% if @milestones.any? %>
-      <ul class="sortable">
+      <ul>
         <%= render @milestones %>
       </ul>
     <% else %>
@@ -21,5 +21,4 @@
         <span>Use the new milestone button above to create your first milestone.</span>
       </div>
     <% end %>
-  </div>
 </div>

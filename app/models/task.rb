@@ -7,7 +7,7 @@ class Task < ActiveRecord::Base
   AVAILABLE_STATUSES = %w(pending active finished abandoned)
 
   before_save do
-    self.status ||= 'pending'
+    self.status ||= 'open'
   end
 
 end

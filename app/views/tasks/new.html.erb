@@ -1,25 +1,13 @@
 <%= sub_nav %>
 
-<%= simple_form_for @task, url: project_tasks_path(@project, @task), html: {role: 'form'} do |f| %>
-
-    <div class="timeline">
-        <article class="panel panel-primary">
-            <div class="panel-heading icon">
-                <i class="glyphicon glyphicon-plus"></i>
-            </div>
-
-            <div class="panel-heading">
-                <h2 class="panel-title">Create a new task</h2>
-            </div>
-
-            <div class="panel-body">
-                <%= f.input :name %>
-                <%= f.input :description %>
-            </div>
-
-            <div class="panel-footer">
-                <%= f.submit "Create", class: 'btn btn-primary' %>
-            </div>
-        </article>
+<div class="item-container">
+    <div class="sub-header">
+        <strong>Create a new task</strong>
     </div>
-<% end %>
+    <%= simple_form_for @task, url: project_tasks_path(@project, @task), html: {role: 'form'} do |f| %>
+        <%= f.input :name %>
+        <%= f.input :description %>
+        <%= f.submit "Create task", class: 'btn btn-primary' %>
+    <% end %>
+</div>
+
