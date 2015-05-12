@@ -1,24 +1,29 @@
 class TasksController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     @task = current_project.tasks.new 
   end
 
   def index
-    if params.has_key?(:filter)
-      @tasks = current_project.tasks.order('priority ASC').select{|task| task.status == params[:filter] }
+    if params.has_key?(:status)
+      @tasks = current_project.tasks.where(status: params[:status]).order('priority ASC')
     else
       @tasks = current_project.tasks.order('priority ASC')
     end
-
   end
 
   def create
-    @task = current_project.tasks.new(tasks_params)
+    @task = current_project.tasks.new(tasks_params.merge(user_id: current_user.id))
 
     if @task.valid?
       @task.save
-      redirect_to project_tasks_path(current_project, @task)
+      if @task.milestone.present?
+        redirect_to project_milestone_path(current_project, @task.milestone)
+      else
+        redirect_to project_tasks_path(current_project, @task)
+      end
+      
     else
       render :new
     end
@@ -30,12 +35,14 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
+
+    raise "Permission denied" unless @task.user == current_user
   end
 
   def update
     task = Task.find(params[:id])
     task.update_attributes(tasks_params)
-    redirect_to project_tasks_path(current_project)
+    redirect_to project_task_path(current_project, task)
   end
 
   def toggle_status
@@ -47,17 +54,16 @@ class TasksController < ApplicationController
     redirect_to project_task_path(current_project, task)
   end
 
-   def sort
-    params[:order].each do |key,value|
-      current_project.tasks.find(value[:id]).update_attribute(:priority, value[:position])
-    end
-    render :nothing => true
-  end
-
+  #  def sort
+  #   params[:order].each do |key,value|
+  #     current_project.tasks.find(value[:id]).update_attribute(:priority, value[:position])
+  #   end
+  #   render :nothing => true
+  # end
 
   private 
 
   def tasks_params
-    params.require(:task).permit(:name, :description, :status)
+    params.require(:task).permit(:name, :description, :status, :milestone_id, :points, :task_type, :priority, :user_id)
   end
 end

@@ -11,6 +11,15 @@ module TasksHelper
     end
   end
 
+  def task_priority_status(task)
+    case task.priority
+    when 'High'
+      'danger'
+    else
+      'primary'
+    end
+  end
+
   def highlight_icon?(size)
     size > 0 ? 'icon_active' : ''
   end
@@ -21,6 +30,10 @@ module TasksHelper
 
   def open_tasks
     current_project.tasks.select{|task| task.status == 'open' }
+  end
+
+  def task_owner?(task)
+    task.user.id == current_user.id
   end
 
 end

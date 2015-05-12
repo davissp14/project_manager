@@ -1,0 +1,10 @@
+
+<li class="list-group-item" style="padding: 10px 10px 10px 15px;">
+  <div style="display: inline-block; width: 85%; padding-left: 5px;">
+    <%= link_to project.name, project_feeds_path(project) %>
+    <p class="list-group-item-text created_at" style='display: inline;'>
+      created <%= time_ago_in_words(project.created_at) %> ago
+    </p>
+  </div>
+</li>
+

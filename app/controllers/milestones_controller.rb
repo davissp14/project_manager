@@ -1,5 +1,6 @@
 class MilestonesController < ApplicationController
-
+  before_action :authenticate_user!
+  
   def index
     @milestones = current_project.milestones.all
   end
@@ -13,12 +14,16 @@ class MilestonesController < ApplicationController
 
     if @milestone.valid?
       @milestone.save
-      redirect_to project_milestones_path(current_project @milestone)
+      redirect_to project_milestones_path(current_project, @milestone)
     else
       render :new
     end
   end
 
+  def show
+    @milestone = current_project.milestones.find_by_title(params[:id])
+    @tasks = params[:status] ? @milestone.tasks.where(status: params[:status]) : @milestone.tasks
+  end
 
   private
 

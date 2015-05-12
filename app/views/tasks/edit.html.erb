@@ -1,8 +1,36 @@
-# <%= simple_form_for @task, url: project_task_path(@task.project, @task), html: {role: 'form'} do |f| %>
-#     <%= f.input :name %>
-#     <%= f.input :description %>
-#     <%= f.label :status %>
-#     <%= f.select :status, Task::AVAILABLE_STATUSES.map{|status| status }, {}, {include_blank: true, class: 'form-control'} %>
-#     <br />
-#     <%= f.submit "Update", class: 'btn btn-primary' %>
-# <% end %>
+<div class="item-container">
+    <div class="sub-header narrow"><strong>Update task</strong></div>
+
+    <%= simple_form_for @task, url: project_task_path(current_project, @task), html: {method: :put} do |f| %>
+       
+      <%= f.input :name, placeholder: "Task name", maxlength: 50 %>
+
+      <%= f.input :task_type do %>
+        <%= f.select :task_type, ['Feature', 'Bug', 'Chore'], {}, { class: 'form-control'} %>
+      <% end %>
+
+      <%= f.input :points do %>
+        <%= f.select :points, [['1 point', 1], ['2 points', 2], ['3 points', 3]], {}, { class: 'form-control'} %>
+      <% end %>
+
+      <%= f.input :priority  do %>
+        <%= f.select :priority, ['High', "Low"], {}, { class: 'form-control'} %>
+      <% end %>
+
+      <%= f.input :milestone_id do %>
+        <%= f.select :milestone_id, current_project.milestones.map{|m| [m.title, m.id]}, { prompt: "None"}, { class: 'form-control' } %>
+      <% end %>
+
+      <%= f.input :description %>
+
+      <%= form_footer do %>
+        <%= link_to "Cancel", 
+            project_tasks_path(current_project), 
+            class: 'btn btn-default btn-md destroy',
+            style: 'font-weight: bold;' %>
+        <%= f.submit "Update", class: 'btn btn-primary' %>
+      <% end %>
+      
+    <% end %>
+</div>
+

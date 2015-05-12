@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150429045315) do
+ActiveRecord::Schema.define(version: 20150512033534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20150429045315) do
     t.text     "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
+  create_table "hackpads", force: :cascade do |t|
+    t.string   "pad_id"
+    t.integer  "project_id"
+    t.string   "title"
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.string   "status",     default: "active"
   end
 
   create_table "milestones", force: :cascade do |t|
@@ -55,8 +65,29 @@ ActiveRecord::Schema.define(version: 20150429045315) do
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "status"
-    t.integer  "priority"
+    t.string   "priority"
     t.integer  "milestone_id"
+    t.integer  "points"
+    t.string   "task_type"
+    t.integer  "user_id"
   end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet     "current_sign_in_ip"
+    t.inet     "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end

@@ -1,4 +1,15 @@
 
-<li>
-  <h2 class='milestone-title'> <%= milestone.title %> </h2>
+<li class="list-group-item">
+  <h2 class='milestone-title'><%=link_to milestone.title, project_milestone_path(current_project, milestone) %></h2>
+  <p><%= truncate(milestone.scope, length: 130) %></p>
+
+    <div class="progress" style="margin-right: 15px;">
+      <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow="<%= percentage_complete(milestone) %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= percentage_complete(milestone) %>%;">
+        <span class="sr-only"><%= percentage_complete(milestone) %>% Complete</span>
+      </div>
+    </div>
+    <strong><%= percentage_complete(milestone) %>%</strong><span class='subtle'> complete </span> 
+    <strong><%= milestone_open_tasks(milestone)%></strong> <span class='subtle'> open </span>  
+    <strong><%= milestone_closed_tasks(milestone)%></strong> <span class='subtle'> closed </span>
+
 </li>

@@ -1,0 +1,21 @@
+<%= sub_nav %>
+
+<div class="item-container">
+    <div class="sub-header narrow">
+        <strong>Create a new Hackpad</strong>
+    </div>
+    <%= simple_form_for @hackpad, url: project_hackpads_path(@project, @hackpad), html: {role: 'form'} do |f| %>
+        
+          <%= f.input :title, placeholder: "Hackpad Title", maxlength: 50 %>
+
+
+        <div style='text-align: right; padding-top: 10px;'>
+          <%= link_to "Cancel", 
+            project_tasks_path(current_project), 
+            class: 'btn btn-default btn-md destroy',
+            style: 'font-weight: bold;' %>
+          <%= f.submit "Create", class: 'btn btn-primary' %>
+        </div>
+    <% end %>
+</div>
+

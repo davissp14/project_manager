@@ -1,0 +1,9 @@
+
+<%= sub_nav %>
+
+<div class='hackpad-container'>
+  <iframe src="https://hackpad.com/<%= @hackpad.pad_id %>"></iframe>
+  <noscript>
+    <div>View <a href="https://hackpad.com/<%= @hackpad.pad_id%>"><%= @hackpad.title %></a> on Hackpad.</div>
+  </noscript>
+</div>

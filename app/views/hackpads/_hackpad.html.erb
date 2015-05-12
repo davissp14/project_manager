@@ -1,0 +1,15 @@
+
+<li class="list-group-item" style="padding: 10px 10px 10px 15px;">
+
+  <div class='task-label'>
+      <i class="fa fa-comments-o"></i>
+  </div>
+
+  <div style="display: inline-block; width: 85%; padding-left: 5px;">
+    <%= link_to hackpad.title, project_hackpad_path(current_project, hackpad), data: { no_turbolink: true } %>
+
+    <p class="list-group-item-text created_at" style='display: inline;'>
+      created <%= time_ago_in_words(hackpad.created_at) %> ago
+    </p>
+  </div>
+</li>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -8,9 +9,15 @@ Rails.application.routes.draw do
     resources :milestones
     resources :tasks do 
       put :sort, on: :collection
+      post 'toggle_status'
       resources :comments
     end
-    resources :tags
+    resources :hackpads do 
+
+      collection do 
+        post :resync
+      end
+    end
     resources :feeds
   end
 

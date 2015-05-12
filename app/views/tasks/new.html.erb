@@ -1,13 +1,33 @@
 <%= sub_nav %>
 
 <div class="item-container">
-    <div class="sub-header">
-        <strong>Create a new task</strong>
-    </div>
+    <div class="sub-header narrow"> <strong>Create a new task</strong> </div>
+
     <%= simple_form_for @task, url: project_tasks_path(@project, @task), html: {role: 'form'} do |f| %>
-        <%= f.input :name %>
-        <%= f.input :description %>
-        <%= f.submit "Create task", class: 'btn btn-primary' %>
+        
+      <%= f.input :name, placeholder: "Task name", maxlength: 50 %>
+      <%= f.input :task_type do %>
+        <%= f.select :task_type, ['Feature', 'Bug', 'Chore'], {}, { class: 'form-control'} %>
+      <% end %>
+      <%= f.input :points do %>
+        <%= f.select :points, [['1 point', 1], ['2 points', 2], ['3 points', 3]], {}, { class: 'form-control'} %>
+      <% end %>
+      <%= f.input :priority  do %>
+        <%= f.select :priority, [['High', "High"], ["Low", "Low"], ["No Priority", nil]], {}, { class: 'form-control'} %>
+      <% end %>
+      <%= f.input :milestone_id do %>
+        <%= f.select :milestone_id, current_project.milestones.map{|m| [m.title, m.id]}, { prompt: "None"}, { class: 'form-control' } %>
+      <% end %>
+      <%= f.input :description, placeholder: "Task description" %>
+
+      <%= form_footer do %>
+        <%= link_to "Cancel", 
+          project_tasks_path(current_project), 
+          class: 'btn btn-default btn-md destroy',
+          style: 'font-weight: bold;' %>
+        <%= f.submit "Create", class: 'btn btn-primary' %>
+      <% end %>
+      
     <% end %>
 </div>
 

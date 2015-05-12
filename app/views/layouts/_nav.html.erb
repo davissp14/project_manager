@@ -10,13 +10,31 @@
       <a class="navbar-brand" href="#">Project Manager</a>
     </div>
 
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="<%= 'active' if params[:controller] == 'projects' %>">
-          <a href="<%= projects_path %>">Projects</a>
-        </li>
-      </ul>
-    </div>
+    <% if current_user %>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="<%= 'active' if params[:controller] == 'projects' %>">
+            <a href="<%= projects_path %>">Projects</a>
+          </li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <span style='padding-right: 3px;'>
+                <%= image_tag current_user.gravatar_url, size: '20x20', style: 'border-radius: 3px;' %>
+              </span>
+              <%= current_user.slug %><span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Settings</a></li>
+              <li class="divider"></li>
+              <li><%= link_to "Log out", destroy_user_session_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    <% end %>
   </div>
 </nav>
 
