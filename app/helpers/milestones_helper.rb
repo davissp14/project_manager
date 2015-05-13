@@ -4,9 +4,9 @@ module MilestonesHelper
     closed = milestone_closed_tasks(milestone).to_f
     open = milestone_open_tasks(milestone).to_f
     
-    return 0 if open == 0
+    return 0 if open == 0 && closed == 0
     
-    (closed / (closed + open)) * 100
+    ((closed / (closed + open)) * 100).round(0)
   end
 
   def milestone_open_tasks(milestone)

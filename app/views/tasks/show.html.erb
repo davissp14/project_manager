@@ -1,3 +1,5 @@
+<!-- <h4><a href="#">Project Manager</a> / <a href="#">Tasks</a> / 43 </h4>
+<hr /> -->
 <div class='item-container' style="padding-top: 0px;">
     <div class='task-header'>
         <div class='task-title'><%= @task.name %></div>
@@ -6,12 +8,32 @@
             <%= "created #{time_ago_in_words(@task.created_at)} ago" %>
         </span>
         <% if @task.priority.present? %>
-            <h4 style="display: inline;">
+            <h4 style="display: inline-block;">
                 <span class="label label-<%= task_priority_status(@task) %>" style="">
                     <%= @task.priority %> priority
                 </span>
             </h4>
         <% end %>
+
+        <!-- User Assignment section -->
+        <span class='pull-right' style="padding-right: 15px;">
+            <strong>
+                <% if @task.owner %>
+                    <%= image_tag @task.owner.gravatar_url, size: '25x25' %>
+                    <span style='vertical-align: middle;'><%= @task.owner.slug %></span>
+                <% else %>
+                    <span><strong>Unassigned</strong></span>
+                    (<%= link_to 'assign yourself', assign_project_task_path(current_project, @task), method: :post %>)
+                <% end %>
+
+                <% if @task.owner == current_user %>
+                    (<%= link_to 'unassign yourself', unassign_project_task_path(current_project, @task), method: :post %>)
+                <% end %>   
+            </strong>
+        </span>
+        <div class='clearfix'></div>
+     
+     <!-- End of user assignment -->
     </div>
 
     <%= render partial: 'task_box', locals: { task: @task } %>

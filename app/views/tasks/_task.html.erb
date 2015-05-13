@@ -7,11 +7,6 @@
     </a>
   </h4>
 
-  <div class="checkbox" style='display: inline-block; margin: 0; position: relative;'>
-    <label>
-      <input type="checkbox">
-    </label>
-  </div>
 
   <div class='task-label'>
       <% if task.task_type == 'Feature' %>
@@ -23,16 +18,20 @@
       <% end %>
   </div>
 
-  <div style="display: inline-block; width: 85%; padding-left: 5px;">
+  <div style="display: inline-block; width: 90%; padding-left: 5px;">
     <a href="<%= project_task_path(task.project, task) %>">
       <%= task.name %>
     </a>
 
     <p class="list-group-item-text created_at" style='display: inline;'>
-      - <%= truncate(task.description, length: 65) %>
+      - <%= truncate(task.description, length: 50) %>
         <% if task.priority.present? %>
           <span class="label label-<%= task_priority_status(task) %>" style=""><%= task.priority %> priority</span>
         <% end %>
     </p>
+
+    <% if task.owner %>
+      <%= image_tag current_user.gravatar_url, size: '25x25', style: 'vertical-align: top; float: right;' %>
+    <% end %>
   </div>
 </li>

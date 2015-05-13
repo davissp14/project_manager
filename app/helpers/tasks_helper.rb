@@ -12,11 +12,12 @@ module TasksHelper
   end
 
   def task_priority_status(task)
-    case task.priority
-    when 'High'
+    case task.priority_status
+    when 3
       'danger'
-    else
+    when 1
       'primary'
+    else
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150512033534) do
+ActiveRecord::Schema.define(version: 20150513210511) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150512033534) do
     t.text     "scope"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "slug"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -47,6 +48,7 @@ ActiveRecord::Schema.define(version: 20150512033534) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "description"
+    t.string   "slug"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -62,14 +64,16 @@ ActiveRecord::Schema.define(version: 20150512033534) do
     t.integer  "project_id"
     t.string   "name"
     t.text     "description"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.string   "status"
     t.string   "priority"
     t.integer  "milestone_id"
     t.integer  "points"
     t.string   "task_type"
     t.integer  "user_id"
+    t.integer  "priority_status", default: 2
+    t.integer  "owner_id"
   end
 
   create_table "users", force: :cascade do |t|

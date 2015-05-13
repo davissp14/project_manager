@@ -12,8 +12,8 @@
       <%= f.input :points do %>
         <%= f.select :points, [['1 point', 1], ['2 points', 2], ['3 points', 3]], {}, { class: 'form-control'} %>
       <% end %>
-      <%= f.input :priority  do %>
-        <%= f.select :priority, [['High', "High"], ["Low", "Low"], ["No Priority", nil]], {}, { class: 'form-control'} %>
+      <%= f.input :priority_status  do %>
+        <%= f.select :priority_status, [['High', 3], ["Low", 1], ["None", 2]], {}, { class: 'form-control'} %>
       <% end %>
       <%= f.input :milestone_id do %>
         <%= f.select :milestone_id, current_project.milestones.map{|m| [m.title, m.id]}, { prompt: "None"}, { class: 'form-control' } %>

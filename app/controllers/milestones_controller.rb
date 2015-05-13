@@ -21,8 +21,13 @@ class MilestonesController < ApplicationController
   end
 
   def show
-    @milestone = current_project.milestones.find_by_title(params[:id])
-    @tasks = params[:status] ? @milestone.tasks.where(status: params[:status]) : @milestone.tasks
+    #TODO This is redundant
+    if params.has_key?(:status)
+      @tasks = current_milestone.tasks.where(status: params[:status]).order('priority_status DESC')
+    else
+      params[:status] = 'open'
+      @tasks = current_milestone.tasks.where(status: 'open').order('priority_status DESC')
+    end
   end
 
   private

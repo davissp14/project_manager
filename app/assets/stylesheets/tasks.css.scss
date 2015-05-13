@@ -55,6 +55,7 @@ li.list-group-item a:hover {
 li.list-group-item a.comment-icon {
   text-decoration: none;
   padding-right: 10px;
+  padding-top: 5px;
   color: #eeeeee;
   font-size: 14px;
 }
@@ -62,7 +63,6 @@ li.list-group-item a.comment-icon {
 li.list-group-item a.comment-icon:hover {
   color: #999999;
 }
-
 
 .created_at, .subtle {
   color: #999999;

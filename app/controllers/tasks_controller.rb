@@ -7,9 +7,10 @@ class TasksController < ApplicationController
 
   def index
     if params.has_key?(:status)
-      @tasks = current_project.tasks.where(status: params[:status]).order('priority ASC')
+      @tasks = current_project.tasks.where(status: params[:status]).order('priority_status DESC')
     else
-      @tasks = current_project.tasks.order('priority ASC')
+      params[:status] = 'open'
+      @tasks = current_project.tasks.where(status: 'open').order('priority_status DESC')
     end
   end
 
@@ -54,16 +55,30 @@ class TasksController < ApplicationController
     redirect_to project_task_path(current_project, task)
   end
 
-  #  def sort
-  #   params[:order].each do |key,value|
-  #     current_project.tasks.find(value[:id]).update_attribute(:priority, value[:position])
-  #   end
-  #   render :nothing => true
-  # end
+   def sort
+    params[:order].each do |key,value|
+      current_project.tasks.find(value[:id]).update_attribute(:priority, value[:position])
+    end
+    render :nothing => true
+  end
+
+  def assign
+    task = current_project.tasks.find(params[:id])
+    task.update_attributes(owner: current_user)
+
+    redirect_to project_task_path(current_project, task)
+  end
+
+  def unassign 
+    task = current_project.tasks.find(params[:id])
+    task.update_attributes(owner: nil)
+
+    redirect_to project_task_path(current_project, task)
+  end
 
   private 
 
   def tasks_params
-    params.require(:task).permit(:name, :description, :status, :milestone_id, :points, :task_type, :priority, :user_id)
+    params.require(:task).permit(:name, :description, :status, :milestone_id, :points, :task_type, :priority, :user_id, :priority_status)
   end
 end

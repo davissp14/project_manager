@@ -10,10 +10,16 @@ Rails.application.routes.draw do
     resources :tasks do 
       put :sort, on: :collection
       post 'toggle_status'
+    
+      member do 
+        post 'assign'
+        post 'unassign'
+      end
+      
+
       resources :comments
     end
     resources :hackpads do 
-
       collection do 
         post :resync
       end

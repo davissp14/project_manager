@@ -8,9 +8,18 @@ class ApplicationController < ActionController::Base
   helper_method :current_project
   def current_project
     @project ||= if params[:controller] == 'projects'
-      Project.find_by_name(params[:id])
+      Project.find_by_slug(params[:id])
     else
-      Project.find_by_name(params[:project_id])
+      Project.find_by_slug(params[:project_id])
+    end
+  end
+
+  helper_method :current_milestone
+  def current_milestone
+    @milestone ||= if params[:controller] == 'milestones'
+      current_project.milestones.find_by_slug(params[:id])
+    else
+      current_project.milestones.find_by_slug(params[:milestone_id])
     end
   end
 end
