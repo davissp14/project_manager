@@ -3,7 +3,14 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
+  before_action :set_breadcrumbs
+
   add_flash_types :error, :success
+
+  helper_method :current_account
+  def current_account
+    @current_account ||= current_user.account
+  end
 
   helper_method :current_project
   def current_project
@@ -20,6 +27,15 @@ class ApplicationController < ActionController::Base
       current_project.milestones.find_by_slug(params[:id])
     else
       current_project.milestones.find_by_slug(params[:milestone_id])
+    end
+  end
+
+  private 
+
+  def set_breadcrumbs
+    if %w(tasks hackpads sprints feeds).include?(params[:controller])
+      add_breadcrumb "projects", projects_path(current_project)
+      add_breadcrumb "<strong>#{params[:controller]}</strong>".html_safe, Rails.application.routes.url_helpers.send("project_#{params[:controller]}_path", current_project)
     end
   end
 end

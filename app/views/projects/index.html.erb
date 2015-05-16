@@ -1,19 +1,28 @@
 
-<%= link_to new_project_path, class: "btn btn-default btn-md pull-right" do %>
-  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project
-<% end %>
+<div class='row'>
+  <div class='col-md-8'>
+    <div class='form-box'>
+      <div class='form-box-title'>
+        <h5>All Projects associated with this account.</h5>
+        <div class='form-box-tools'>
+          <%= link_to new_project_path, class: 'btn btn-active btn-xs' do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project
+          <% end %>
+        </div>
+      </div>
 
-<div class='item-container'>
-  <div class="sub-header">
-    <strong>Projects</strong>
-  </div>
-
-  <% if @projects.any? %>
-    <ul class='sortable'><%= render @projects %></ul>
-  <% else %>
-     <div class='empty-container'>
-      <p>No Projects found.</p>
-      <span>Use the add project button above to get started.</span>
+      <div class='form-box-content'>
+        <% if @projects.any? %>
+          <ul class='sortable list-group'>
+            <%= render @projects %>
+          </ul>
+        <% else %>
+           <div class='empty-container'>
+            <p>No Projects found.</p>
+            <span>Use the add project button above to get started.</span>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>

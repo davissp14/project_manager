@@ -1,5 +1,5 @@
-<!-- <h4><a href="#">Project Manager</a> / <a href="#">Tasks</a> / 43 </h4>
-<hr /> -->
+<%= render 'shared/breadcrumbs' %>
+
 <div class='item-container' style="padding-top: 0px;">
     <div class='task-header'>
         <div class='task-title'><%= @task.name %></div>
@@ -7,10 +7,10 @@
         <span class='created_at'>
             <%= "created #{time_ago_in_words(@task.created_at)} ago" %>
         </span>
-        <% if @task.priority.present? %>
+        <% if @task.priority_label.present? %>
             <h4 style="display: inline-block;">
                 <span class="label label-<%= task_priority_status(@task) %>" style="">
-                    <%= @task.priority %> priority
+                    <%= @task.priority_label %> priority
                 </span>
             </h4>
         <% end %>
@@ -32,7 +32,6 @@
             </strong>
         </span>
         <div class='clearfix'></div>
-     
      <!-- End of user assignment -->
     </div>
 

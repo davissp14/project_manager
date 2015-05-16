@@ -1,0 +1,23 @@
+
+<div class="item-container">
+    <div class="sub-header narrow"> <strong>Create a new task</strong> </div>
+
+    <%= simple_form_for @sprint, url: project_sprints_path(@project, @sprint), html: {role: 'form'} do |f| %>
+        
+      <%= f.input :name, placeholder: "Task name", maxlength: 50 %>
+
+      <%= f.input :target_date, as: :date, html5: true %>
+
+      <%= f.input :description, placeholder: "Sprint description" %>
+
+      <%= form_footer do %>
+        <%= link_to "Cancel", 
+          project_sprints_path(current_project), 
+          class: 'btn btn-default btn-md destroy',
+          style: 'font-weight: bold;' %>
+        <%= f.submit "Create", class: 'btn btn-primary' %>
+      <% end %>
+      
+    <% end %>
+</div>
+

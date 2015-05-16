@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150513210511) do
+ActiveRecord::Schema.define(version: 20150514234607) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "project_id"
@@ -34,21 +41,24 @@ ActiveRecord::Schema.define(version: 20150513210511) do
     t.string   "status",     default: "active"
   end
 
-  create_table "milestones", force: :cascade do |t|
-    t.integer  "project_id"
-    t.string   "title"
-    t.text     "scope"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "slug"
-  end
-
   create_table "projects", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.text     "description"
     t.string   "slug"
+    t.integer  "account_id"
+  end
+
+  create_table "sprints", force: :cascade do |t|
+    t.integer  "project_id"
+    t.integer  "owner_id"
+    t.string   "status"
+    t.string   "name"
+    t.text     "description"
+    t.date     "target_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "tags", force: :cascade do |t|
@@ -67,8 +77,7 @@ ActiveRecord::Schema.define(version: 20150513210511) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.string   "status"
-    t.string   "priority"
-    t.integer  "milestone_id"
+    t.integer  "priority"
     t.integer  "points"
     t.string   "task_type"
     t.integer  "user_id"
@@ -89,6 +98,8 @@ ActiveRecord::Schema.define(version: 20150513210511) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.integer  "account_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -9,9 +9,9 @@
       class="btn btn-default <%= 'active' if current_controller('hackpads') %>">
       Hackpads
     </a>
-    <a href="<%= project_milestones_path(current_project) %>" 
-      class="btn btn-default <%= 'active' if current_controller('milestones') %>">
-      Milestones
+    <a href="<%= project_sprints_path(current_project) %>" 
+      class="btn btn-default <%= 'active' if current_controller('sprints') %>">
+      Sprints
     </a>
     <a href="<%= project_tasks_path(current_project) %>" 
       class="btn btn-default <%= 'active' if current_controller('tasks') %>">

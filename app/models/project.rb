@@ -1,5 +1,6 @@
 class Project < ActiveRecord::Base
-  has_many :milestones
+  belongs_to :account
+  has_many :sprints
   has_many :tasks
   has_many :tags
   has_many :hackpads

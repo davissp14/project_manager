@@ -1,0 +1,29 @@
+<div class='row'>
+  <div class='col-md-8'>
+    <div class='form-box'>
+      <div class='form-box-title'>
+        <h5>Project Sprints</h5>
+        <div class='form-box-tools'>
+          <%= link_to new_project_sprint_path, class: 'btn btn-active btn-xs' do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Project
+          <% end %>
+        </div>
+      </div>
+
+      <div class='form-box-content'>
+        <% if @sprints.any? %>
+          <ul class='sortable list-group'>
+            <%= render @sprints %>
+          </ul>
+        <% else %>
+           <div class='empty-container'>
+            <p>No Sprints found.</p>
+            <span>Use the add sprint button above to get started.</span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+

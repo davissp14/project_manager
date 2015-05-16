@@ -1,3 +1,5 @@
+<%= render 'shared/breadcrumbs' %>
+
 <div class="item-container">
     <div class="sub-header narrow"><strong>Update task</strong></div>
 
@@ -25,7 +27,7 @@
 
       <%= form_footer do %>
         <%= link_to "Cancel", 
-            project_tasks_path(current_project), 
+            project_task_path(current_project, @task), 
             class: 'btn btn-default btn-md destroy',
             style: 'font-weight: bold;' %>
         <%= f.submit "Update", class: 'btn btn-primary' %>

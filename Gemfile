@@ -12,6 +12,8 @@ gem 'devise'
 gem 'gravtastic'
 gem "oauth-plugin"
 
+gem "breadcrumbs_on_rails"
+
 gem 'slim-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'

@@ -1,39 +1,27 @@
+<div class='row'>
+  <div class='col-md-8'>
+    <div class='form-box'>
+      <div class='form-box-title'>
+        <h5>All yo pads.</h5>
+        <div class='form-box-tools'>
+          <%= link_to new_project_hackpad_path(current_project), class: 'btn btn-active btn-xs' do %>
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Hackpad
+          <% end %>
+        </div>
+      </div>
 
-<%= sub_nav do %>
-  <%= link_to new_project_hackpad_path(current_project), class: "btn btn-default btn-md pull-right" do %>
-    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Hackpad
-  <% end %>
-<% end %>
-
-<div class='item-container'>
-  <div class="sub-header">
-    <div class="open_closed" style='display: inline;'>
-      <span class='open_close_item <%= "active" if params[:status] == 'active' %>'>
-        <span class="glyphicon glyphicon-info-sign"></span>
-        <%= link_to "#{active_hackpads.size} Active", project_hackpads_path(current_project, status: 'active') %>
-      </span>
-      <span class='open_close_item <%= "active" if params[:status] == 'archived' %>'>
-        <i class="fa fa-archive"></i>
-        <%= link_to "#{archived_hackpads.size} Archived", project_hackpads_path(current_project, status: 'archived') %>
-      </span>
-    </div>
-
-    <% if @hackpads.any? %>
-      <span class='pull-right refresh-pads'>
-        <%= link_to resync_project_hackpads_path(current_project), method: :post do %>
-          <h4><i class="fa fa-refresh"></i></h4>
+      <div class='form-box-content'>
+        <% if @hackpads.any? %>
+          <ul class='sortable list-group'>
+            <%= render @hackpads %>
+          </ul>
+        <% else %>
+           <div class='empty-container'>
+            <p>No Hackpads found.</p>
+            <span>Use the add hackpad button above to get started.</span>
+          </div>
         <% end %>
-      </span>
-    <% end %>
-
-  </div>
-
-  <% if @hackpads.any? %>
-    <ul class='sortable'><%= render @hackpads %></ul>
-  <% else %>
-     <div class='empty-container'>
-      <p>No Hackpads found.</p>
-      <span>Use the add hackpad button above to get started.</span>
+      </div>
     </div>
-  <% end %>
+  </div>
 </div>

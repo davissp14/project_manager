@@ -2,28 +2,25 @@ class ProjectsController < ApplicationController
   before_action :authenticate_user!
   
   def new
-    @project = Project.new
+    @project = current_account.projects.new
+
+    add_breadcrumb "projects", projects_path(@project)
+    add_breadcrumb "<strong>new</strong>".html_safe
   end
 
   def index
-    @projects = Project.all
+    @projects = current_account.projects
   end
 
   def show
-    @project = Project.find_by_name(params[:id])
+    @project = current_account.projects.find_by_name(params[:id])
   end
 
   def create
-    @project = Project.new(project_params)
+    @project = current_account.projects.new(project_params)
 
-    if @project.valid?
-      @project.save
-      flash[:success] = "Project successfully created"
-      redirect_to @project
-    else
-      flash[:notice] = @project.error_messages.first
-      render :new
-    end
+    @project.save
+    redirect_to project_feed_path(@project)
   end
 
   private 

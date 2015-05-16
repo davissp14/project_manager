@@ -17,9 +17,25 @@
   <%= csrf_meta_tags %>
 </head>
   <body>
-    <%= render 'layouts/nav' %>
-    <div class='container'>
-      <%= yield %>
+    <div id="wrapper">
+        <%= render 'layouts/side_nav' %>
+        
+        <div class='page-wrapper'>
+          <div id="page-content-wrapper">
+            <%= render 'layouts/nav' %>
+            <div class="page-content">
+              <div class="container-fluid content" style="padding: 0px;">
+                <%= render 'layouts/header' %>
+                <div style="padding: 0 15px;">
+                  <div class="wrapper wrapper-content">
+                    <%= yield %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

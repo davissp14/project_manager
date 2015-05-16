@@ -6,12 +6,7 @@ class TasksController < ApplicationController
   end
 
   def index
-    if params.has_key?(:status)
-      @tasks = current_project.tasks.where(status: params[:status]).order('priority_status DESC')
-    else
-      params[:status] = 'open'
-      @tasks = current_project.tasks.where(status: 'open').order('priority_status DESC')
-    end
+    @tasks = current_project.tasks.order('priority ASC')
   end
 
   def create
@@ -36,8 +31,6 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
-
-    raise "Permission denied" unless @task.user == current_user
   end
 
   def update
@@ -79,6 +72,7 @@ class TasksController < ApplicationController
   private 
 
   def tasks_params
-    params.require(:task).permit(:name, :description, :status, :milestone_id, :points, :task_type, :priority, :user_id, :priority_status)
+    params.require(:task).permit(:name, :description, :status, :points, :task_type, :priority, :user_id, :priority_status)
   end
+
 end

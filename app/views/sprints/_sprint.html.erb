@@ -1,0 +1,17 @@
+
+<li class="list-group-item">
+
+  <div style="display: inline-block; width: 90%; padding: 5px;">
+    <a href="<%= project_sprint_path(current_project, sprint) %>">
+      <%= sprint.name %>
+    </a>
+
+    <p class="list-group-item-text created_at" style='display: inline;'>
+      - <%= truncate(sprint.description, length: 50) %>
+    </p>
+
+    <% if sprint.owner %>
+      <%= image_tag current_user.gravatar_url, size: '25x25', style: 'vertical-align: top; float: right;' %>
+    <% end %>
+  </div>
+</li>

@@ -1,3 +1,5 @@
+<%= render 'shared/breadcrumbs' %>
+
 <%= sub_nav %>
 
 <div class="item-container">
@@ -15,9 +17,7 @@
       <%= f.input :priority_status  do %>
         <%= f.select :priority_status, [['High', 3], ["Low", 1], ["None", 2]], {}, { class: 'form-control'} %>
       <% end %>
-      <%= f.input :milestone_id do %>
-        <%= f.select :milestone_id, current_project.milestones.map{|m| [m.title, m.id]}, { prompt: "None"}, { class: 'form-control' } %>
-      <% end %>
+
       <%= f.input :description, placeholder: "Task description" %>
 
       <%= form_footer do %>

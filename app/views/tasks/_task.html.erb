@@ -1,14 +1,7 @@
 
-<li data-project-id="<%= task.project.name %>" data-id="<%= task.id %>" class="list-group-item">
-  <h4>
-    <a href="<%= project_task_path(current_project, task) %>" class="comment-icon pull-right">
-      <span class="glyphicon glyphicon-comment <%= highlight_icon?(task.comments.size) %>"></span> 
-      <span class="<%= highlight_icon?(task.comments.size) %>"> <%= task.comments.size %></span>
-    </a>
-  </h4>
+<li data-project-id="<%= task.project.name %>" data-id="<%= task.id %>" class="list-group-item tasks">
 
-
-  <div class='task-label'>
+  <span class='task-label' style='width: 40px;'>
       <% if task.task_type == 'Feature' %>
       <span class='glyphicon glyphicon-star'></span>
       <% elsif task.task_type == 'Chore' %>
@@ -16,22 +9,33 @@
       <% else %>
         <i class="fa fa-bug"></i>
       <% end %>
-  </div>
+  </span>
 
-  <div style="display: inline-block; width: 90%; padding-left: 5px;">
-    <a href="<%= project_task_path(task.project, task) %>">
-      <%= task.name %>
-    </a>
+  <span class='task-name'>
+    <%= link_to task.name, project_task_path(current_project, task) %>
+    <br>
+    <small><%= truncate(task.description, length: 50) %></small>
+  </span>
 
-    <p class="list-group-item-text created_at" style='display: inline;'>
-      - <%= truncate(task.description, length: 50) %>
-        <% if task.priority.present? %>
-          <span class="label label-<%= task_priority_status(task) %>" style=""><%= task.priority %> priority</span>
-        <% end %>
-    </p>
+  <span class='task-date'>
+    <small><%= task.created_at.strftime('%m/%d/%Y at %I:%M%p') %></small>
+  </span>
 
-    <% if task.owner %>
-      <%= image_tag current_user.gravatar_url, size: '25x25', style: 'vertical-align: top; float: right;' %>
+  <% if task.owner %>
+    <span class='task-owner'>
+       <%= image_tag current_user.gravatar_url, size: '35x35', style: 'border-radius: 25px;' %>
+    </span>
+  <% end %>
+
+<!--   <span class='task-priority'>
+    <% if task.priority_label.present? %>
+      <span class="label label-<%= task_priority_status(task) %>" style=""><%= task.priority_label %> priority</span>
     <% end %>
-  </div>
+  </span> -->
+
+  <span class='task-comments'>
+    <span class="glyphicon glyphicon-comment <%= highlight_icon?(task.comments.size) %> icon"></span> 
+    <span class="<%= highlight_icon?(task.comments.size) %> text"> <%= task.comments.size %></span>
+  </span>
+   
 </li>

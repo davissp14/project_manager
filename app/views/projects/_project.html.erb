@@ -1,10 +1,26 @@
 
-<li class="list-group-item" style="padding: 10px 10px 10px 15px;">
-  <div style="display: inline-block; width: 85%; padding-left: 5px;">
+<li class="list-group-item projects">
+  <span class='project-status'> 
+    <h5><span class="label label-active">Active</span></h5>
+  </span>
+
+  <span class='project-title'>
     <%= link_to project.name, project_feeds_path(project) %>
-    <p class="list-group-item-text created_at" style='display: inline;'>
-      created <%= time_ago_in_words(project.created_at) %> ago
-    </p>
-  </div>
+    <br />
+    <small>Created <%= time_ago_in_words(project.created_at) %> ago</small>
+  </span>
+
+  <span class='project-people'>
+    <%= image_tag current_user.gravatar_url, size: '35x35', style: 'border-radius: 25px;' %>
+  </span> 
+
+  <span class='project-actions'>
+    <%= link_to project_feeds_path(project), class: 'btn btn-default btn-sm' do %>
+      <i class="fa fa-folder"></i> View
+    <% end %>
+    <%= link_to '#', class: 'btn btn-default btn-sm' do %>
+      <span class='glyphicon glyphicon-pencil' style='display: inline;'></span> Edit
+    <% end %>
+  </span>
 </li>
 
