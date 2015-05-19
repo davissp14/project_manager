@@ -33,9 +33,9 @@ class ApplicationController < ActionController::Base
   private 
 
   def set_breadcrumbs
-    if %w(tasks hackpads sprints feeds).include?(params[:controller])
+    if %w(tasks hackpads kanbans feeds).include?(params[:controller])
       add_breadcrumb "projects", projects_path(current_project)
-      add_breadcrumb "<strong>#{params[:controller]}</strong>".html_safe, Rails.application.routes.url_helpers.send("project_#{params[:controller]}_path", current_project)
+      add_breadcrumb "#{params[:controller]}".html_safe, Rails.application.routes.url_helpers.send("project_#{params[:controller]}_path", current_project)
     end
   end
 end

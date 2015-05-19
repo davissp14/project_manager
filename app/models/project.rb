@@ -1,6 +1,6 @@
 class Project < ActiveRecord::Base
   belongs_to :account
-  has_many :sprints
+  has_many :kanbans
   has_many :tasks
   has_many :tags
   has_many :hackpads

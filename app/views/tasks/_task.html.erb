@@ -14,11 +14,11 @@
   <span class='task-name'>
     <%= link_to task.name, project_task_path(current_project, task) %>
     <br>
-    <small><%= truncate(task.description, length: 50) %></small>
+    <small><%= truncate(task.description, length: 55) %></small>
   </span>
 
   <span class='task-date'>
-    <small><%= task.created_at.strftime('%m/%d/%Y at %I:%M%p') %></small>
+    <small><%= task.created_at.strftime('%m/%d/%Y at %I:%M%P') %></small>
   </span>
 
   <% if task.owner %>

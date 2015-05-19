@@ -1,14 +1,30 @@
 
-<li class="list-group-item" style="padding: 10px 10px 10px 15px;">
-  <div class='task-label'>
-      <i class="fa fa-comments-o"></i>
-  </div>
+<li class="list-group-item hackpads">
+  
+  <span class='hackpad-icon'> 
+    <i class="fa fa-comments-o"></i>
+  </span>
 
-  <div style="display: inline-block; width: 85%; padding-left: 5px;">
-    <%= link_to hackpad.title, project_hackpad_path(current_project, hackpad), data: { no_turbolink: true } %>
+  <span class='hackpad-title'>
+    <%= link_to hackpad.title, project_hackpad_path(current_project, hackpad), 
+      data: { no_turbolink: true } %>
+    <br />
+    <small>created <%= time_ago_in_words(hackpad.created_at) %> ago</small>
+  </span>
 
-    <p class="list-group-item-text created_at" style='display: inline;'>
-      created <%= time_ago_in_words(hackpad.created_at) %> ago
-    </p>
-  </div>
+  <span class='hackpad-owner'>
+    <%= current_user.name %><%#= image_tag current_user.gravatar_url, size: '35x35', style: 'border-radius: 25px;' %>
+  </span>
+
+  <span class='hackpad-actions'>
+    <%= link_to project_hackpad_path(current_project, hackpad), class: 'btn btn-default btn-sm' do %>
+      <i class="fa fa-folder"></i> View
+    <% end %>
+    <%= link_to '#', class: 'btn btn-default btn-sm' do %>
+      <i class="fa fa-archive"></i> Archive
+    <% end %>
+  </span>
 </li>
+
+
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150514234607) do
+ActiveRecord::Schema.define(version: 20150517194516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,16 +41,16 @@ ActiveRecord::Schema.define(version: 20150514234607) do
     t.string   "status",     default: "active"
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.text     "description"
-    t.string   "slug"
-    t.integer  "account_id"
+  create_table "kanban_tasks", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "kanban_id"
+    t.string  "name"
+    t.string  "status"
+    t.string  "task_type"
+    t.text    "description"
   end
 
-  create_table "sprints", force: :cascade do |t|
+  create_table "kanbans", force: :cascade do |t|
     t.integer  "project_id"
     t.integer  "owner_id"
     t.string   "status"
@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 20150514234607) do
     t.date     "target_date"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "description"
+    t.string   "slug"
+    t.integer  "account_id"
   end
 
   create_table "tags", force: :cascade do |t|

@@ -1,10 +1,16 @@
-
+  
 .form-box {
   clear: both;
   margin-bottom: 25px;
   margin-top: 0;
-  padding: 10px;
+
   color: #676a6c;
+
+  h2, h3, .breadcrumb {
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 200;
+    padding-bottom: 10px;
+  }
 }
 
 .form-box-title {
@@ -42,7 +48,7 @@
 
 .form-box-content {
   background-color: #ffffff;
-  padding: 15px 20px 20px 20px;
+  padding: 15px 10px 20px 10px;
   border-color: #e7eaec;
   border-image: none;
   border-style: solid solid none;

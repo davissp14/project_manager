@@ -1,0 +1,13 @@
+
+<li class="list-group-item sprints">
+
+  <span class='sprint-title'>
+    <%= link_to kanban.name, project_kanban_path(current_project, kanban) %>
+    <br />
+    <small> <%= truncate(kanban.description, length: 50) %> </small>
+  </span>
+
+  <% if kanban.owner %>
+    <%= image_tag current_user.gravatar_url, size: '25x25' %>
+  <% end %>
+</li>

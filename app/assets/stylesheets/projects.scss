@@ -1,17 +1,4 @@
 
-li.projects { 
-  display: table;
-  width: 100%;
-  max-width: 100%;
-  table-layout: fixed;
-}
-
-li.projects span {
-  display: table-cell;
-  text-align: left;
-  padding-top: 5px;
-}
-
 li.projects small {
   font-size: 80%;
   font-weight: 400;
@@ -26,13 +13,6 @@ li.projects span.project-status {
 
 li.projects span.project-title {
   text-align: left; 
-
-  a {
-    color: #676a6c;
-    font-size: 14px;
-    font-weight: 600;
-  }
-
 }
 
 li.projects span.project-people {
@@ -43,15 +23,6 @@ li.projects span.project-people {
 li.projects span.project-actions {
   text-align: center; 
   vertical-align: middle;
-
-  a.btn {
-    color: #676a6c;
-    font-size: 11px;
-  }
-
-  a.btn:hover {
-    color: #000;
-  }
 }
 
 .label-active, .btn-active {

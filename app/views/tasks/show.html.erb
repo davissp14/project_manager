@@ -1,74 +1,98 @@
-<%= render 'shared/breadcrumbs' %>
+<%= content_for(:header_title) { "Task details" } %>
 
-<div class='item-container' style="padding-top: 0px;">
-    <div class='task-header'>
-        <div class='task-title'><%= @task.name %></div>
-        <span><strong><%= @task.task_type %></strong></span>
-        <span class='created_at'>
-            <%= "created #{time_ago_in_words(@task.created_at)} ago" %>
-        </span>
-        <% if @task.priority_label.present? %>
-            <h4 style="display: inline-block;">
-                <span class="label label-<%= task_priority_status(@task) %>" style="">
-                    <%= @task.priority_label %> priority
-                </span>
-            </h4>
-        <% end %>
+<div class='row'>
+  <div class='col-sm-9'>
+    <div class='form-box'>
+      <div class='form-box-content'>
+        <h2> <%= @task.name %> </h2>
 
-        <!-- User Assignment section -->
-        <span class='pull-right' style="padding-right: 15px;">
-            <strong>
-                <% if @task.owner %>
-                    <%= image_tag @task.owner.gravatar_url, size: '25x25' %>
-                    <span style='vertical-align: middle;'><%= @task.owner.slug %></span>
-                <% else %>
-                    <span><strong>Unassigned</strong></span>
-                    (<%= link_to 'assign yourself', assign_project_task_path(current_project, @task), method: :post %>)
-                <% end %>
-
-                <% if @task.owner == current_user %>
-                    (<%= link_to 'unassign yourself', unassign_project_task_path(current_project, @task), method: :post %>)
-                <% end %>   
-            </strong>
-        </span>
-        <div class='clearfix'></div>
-     <!-- End of user assignment -->
-    </div>
-
-    <%= render partial: 'task_box', locals: { task: @task } %>
-
-    <% @task.comments.each do |comment| %>
-        <%= render partial: 'comment_box', locals: { comment: comment } %>
-    <% end %>
-
-    <div class='comment-wrapper'>
-        <div class='comment-user-image'>
-            <%= image_tag(current_user.gravatar_url, size: '45x45') %>
+        <div class='row'>
+         <div class="col-lg-5">
+              <dl class='dl-horizontal'>
+                <dt> Status: </dt>
+                <dd><h5 style='margin: 0;'><span class="label label-active">Active</span></h5></dd>
+              </dl>
+          </div>
         </div>
-        <div class='comment-container'>
-            <div class="sub-header"><strong>Create Comment</strong></div>
 
+        <div class='row' style='padding-bottom: 20px;'>
+          <div class="col-lg-5">
+            <dl class='dl-horizontal'>
+              <dt> Task type: </dt>
+              <dd> <%= @task.task_type %> </dd>
+              <dt> Created by: </dt>
+              <dd> <%= @task.user.name %></dt>
+              <dt> Comments: </dt>
+              <dd> <%= @task.comments.size %></dt>
+            </dl>
+          </div>
+
+          <div class="col-lg-7">
+            <dl class='dl-horizontal'>
+              <dt> Last updated: </dt>
+              <dd> <%= @task.updated_at.strftime('%m/%d/%Y %I:%M%P') %> </dd>
+              <dt> Created: </dt>
+              <dd> <%= @task.created_at.strftime('%m/%d/%Y %I:%M%P') %> </dt>
+              <dt> Contributers: </dt>
+              <dd> 
+                <%= image_tag current_user.gravatar_url, size: '25x25', style: 'border-radius: 25px;' %>  
+              </dd>
+            </dl>
+          </div>
+
+          <div class="col-lg-7 col-lg-12 " style='width: 100%; padding: 0px 95px;'>
+            <dl>
+              <dt> Description: </dt>
+              <dd> <%= @task.description %> </dd>
+            </dl>
+          </div>
+        </div>
+
+        <div class='form-box'>
+          <div class='form-box-content' style='padding-left: 0;'>
+
+            <h3> Comments </h3>
+            <% if @task.comments.any? %>
+              <% @task.comments.each do |comment| %>
+                <div class='comment-box'>              
+                  <span class='comment-icon'>
+                    <%= image_tag comment.user.gravatar_url, size: '40x40', style: 'border-radius: 25px;' %>
+                  </span>
+                
+                  <span class='comment-poster'>
+                    <strong><%=comment.user.name%> </strong> 
+                    <br />
+                    <small>
+                      commented on <%= comment.created_at.strftime('%m/%d/%Y %I:%M%P') %>
+                    </small>
+                    <div class='comment-text'>
+                      <%= comment.text %>
+                    </div>
+                  </span>
+                </div>
+              <% end %>
+            <% else %>
+              <div class='empty-comments'>
+                <p>No comments found.</p>
+              </div>
+            <% end %>
+
+            <div class='form-box'>
+              <div class='form-box-content' style='padding-left: 0;'>
                 <%= simple_form_for Comment.new, url: project_task_comments_path(current_project, @task) do |f| %>
                     <%= f.input :text, label: false, placeholder: "Leave a comment" %>
 
                     <div style="text-align: right;">
-                        <% if @task.status == 'open' %>
-                            <%= link_to "Close task", 
-                                project_task_toggle_status_path(current_project, @task), 
-                                class: 'btn btn-default btn-md destroy',
-                                method: :post,
-                                style: 'font-weight: bold;' %>
-                        <% else %>
-                            <%= link_to "Reopen task", 
-                                project_task_toggle_status_path(current_project, @task), 
-                                class: 'btn btn-default btn-md destroy',
-                                method: :post,
-                                style: 'font-weight: bold;' %>
-                        <% end %>
-                        <%= f.submit "Comment", class: 'btn btn-primary btn-md' %>
+                      <%= f.submit "Comment", class: 'btn btn-primary btn-md' %>
                     </div>
                 <% end %>
+              </div>
             </div>
-        </div>
+
+          </div>
+        </div> 
+        
+      </div> 
     </div>
+  </div>
 </div>

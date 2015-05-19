@@ -1,0 +1,30 @@
+
+  <ul class="list-group <%= type %>">
+    
+    <% tasks.each do |task| %>
+    <li class="list-group-item kanban-tasks">
+
+      <% if %w(in_progress complete).include?(type) %>
+        <span class='kanban-task-owner'>
+          <%= image_tag current_user.gravatar_url, size: '35x35', style: 'border-radius: 25px;' %>
+        </span>
+      <% end %>
+
+      <span class='kanban-task-name'>
+        <%= link_to task.name, '#' %>
+      </span>
+
+      <span class='kanban-task-actions'>
+        <% if task.status == 'todo' %>
+          <%= link_to 'Start', '#', class: 'btn btn-default btn-xs start-task', data: { task: task.id , gravitar: current_user.gravatar_url } %>
+        <% elsif task.status == 'in_progress' %>
+          <%= link_to 'Complete','#', class: 'btn btn-active btn-xs complete-task', style: 'color: #fff;', data: { task: task.id } %>
+        <% else %>
+
+        <% end %>
+      </span>
+    </li>
+    <% end %>
+
+  </ul>
+

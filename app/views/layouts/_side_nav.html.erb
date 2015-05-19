@@ -11,25 +11,26 @@
       <li class='side-nav'>
         <%= link_to project_feeds_path(current_project) do %>
           <span class='icon'><i class="fa fa-newspaper-o"></i></span>
-          Feeds
-        <% end %>
-      </li>
-      <li class='side-nav'>
-        <%= link_to project_hackpads_path(current_project) do %>
-          <span class='icon'><i class="fa fa-paper-plane"></i></span>
-          Hackpads
-        <% end %>
-      </li>
-      <li class='side-nav'>
-        <%= link_to project_sprints_path(current_project) do %>
-          <span class='icon'><i class="fa fa-bolt"></i></span> 
-          Sprints
+          <span class='text'>Feeds</span>
         <% end %>
       </li>
       <li class='side-nav'>
         <%= link_to project_tasks_path(current_project) do %>
           <span class='icon'><i class="fa fa-tasks"></i></span>
-           Tasks
+          <span class='text'>Tasks</span>
+        <% end %>
+      </li>
+      <li class='side-nav'>
+        <%= link_to project_kanbans_path(current_project) do %>
+          <span class='icon'><i class="glyphicon glyphicon-blackboard"></i></span> 
+          <span class='text'>Kanbans</span>
+        <% end %>
+      </li>
+
+      <li class='side-nav'>
+        <%= link_to project_hackpads_path(current_project) do %>
+          <span class='icon'><i class="fa fa-paper-plane"></i></span>
+            <span class='text'>Hackpads</span>
         <% end %>
       </li>
     <% end %>

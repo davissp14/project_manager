@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'projects#index'
   resources :projects do
-    resources :sprints
+    resources :kanbans do 
+      post 'toggle_task'
+    end
     resources :tasks do 
       put :sort, on: :collection
       post 'toggle_status'

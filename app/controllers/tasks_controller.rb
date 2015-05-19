@@ -27,6 +27,7 @@ class TasksController < ApplicationController
 
   def show
     @task = current_project.tasks.find(params[:id])
+    add_breadcrumb '<strong>Task details</strong>'.html_safe
   end
 
   def edit
