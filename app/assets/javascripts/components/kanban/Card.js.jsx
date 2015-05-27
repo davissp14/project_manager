@@ -46,37 +46,3 @@ var Card = React.createClass({
     );
   }
 });
-
-var CardDropBin = React.createClass({
-  mixins: [DragDropMixin],
-
-  statics: {
-    configureDragDrop: function(register) {
-      register(ItemTypes.CARD, {
-        dropTarget: {
-          acceptDrop: function(component, card) {
-            // When a card is dropped, add it to the parent card list
-            card.deleteCard();
-            component.props.board.addCard(card);
-          }
-        }
-      });
-    }
-  },
-
-  render: function() {
-    const dropState = this.getDropState(ItemTypes.CARD);
-
-    var stateClass = 'none';
-    if (dropState.isHovering) {
-      stateClass = 'hovering';
-    } else if (dropState.isDragging) {
-      stateClass = 'dragging';
-    }
-
-    return <div className={"drop drop-state-" + stateClass}
-              {...this.dropTargetFor(ItemTypes.CARD)}>
-      Drop here
-    </div>;
-  }
-});

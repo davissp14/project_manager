@@ -1,3 +1,4 @@
+var DragDropMixin = ReactDND.DragDropMixin;
 var ReactCSSTransitionGroup = React.addons.CSSTransitionGroup;
 
 var Board = React.createClass({
@@ -7,6 +8,21 @@ var Board = React.createClass({
     kanban_id: React.PropTypes.number.isRequired,
     name: React.PropTypes.string.isRequired,
     cards: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+  },
+
+  mixins: [DragDropMixin],
+
+  statics: {
+    configureDragDrop: function(register) {
+      register(ItemTypes.CARD, {
+        dropTarget: {
+          acceptDrop: function(component, card) {
+            card.deleteCard();
+            component.addCard(card);
+          }
+        }
+      });
+    }
   },
  
   getInitialState: function() {
@@ -35,6 +51,16 @@ var Board = React.createClass({
 
   render: function() {
     var self = this;
+    
+    const dropState = this.getDropState(ItemTypes.CARD);
+
+    var stateClass = 'none';
+    if (dropState.isHovering) {
+      stateClass = 'hovering';
+    } else if (dropState.isDragging) {
+      stateClass = 'dragging';
+    }
+
     var cards = this.state.cards.map(function(card, index) {
       return (
         <Card key={index}
@@ -47,17 +73,19 @@ var Board = React.createClass({
 
     return (
       <div className="col-md-3">
-        <div className='form-box'>
+
+        <div className='form-box active-board'>
           <div className='form-box-title'>
             <strong>{this.props.name}</strong>
           </div>
           <div className='form-box-content'>
+            <div className={"drop drop-state-" + stateClass}
+              {...this.dropTargetFor(ItemTypes.CARD)}>
+            </div>
             <ul className="sortable list-group list-tasks">
-              <ReactCSSTransitionGroup transitionName="example" >
               {cards}
-                 </ReactCSSTransitionGroup>
             </ul>
-            <CardDropBin board={this} />
+        
             <NewCardForm board={this} kanban_id={this.props.kanban_id} />
           </div>
         </div>

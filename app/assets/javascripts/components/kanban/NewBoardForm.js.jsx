@@ -6,16 +6,18 @@ var NewBoardForm = React.createClass({
   },
 
   getInitialState: function(){
-    return { showForm: false }
+    return { 
+      collapseForm: false,
+      hideForm: false 
+    }
   },
 
   setFormState: function(){
-    this.setState({showForm: !this.state.showForm })
+    this.setState({collapseForm: !this.state.collapseForm })
   },
 
   addBoard: function(){
-    name = React.findDOMNode(this.refs.name).value.trim();
-    
+    var name = React.findDOMNode(this.refs.name).value.trim();
     $.ajax({
       url: this.props.kanban_id + '/boards',
       type: 'POST',
@@ -23,7 +25,9 @@ var NewBoardForm = React.createClass({
       data: {name: name},
       success: function(data){
         this.props.kanban.setState({data: data})
-        this.setState({showForm: false})
+        if (this.isMounted()) {
+          this.setState({collapseForm: false})
+        }
       }.bind(this),
       error: function(xhr, status, err) {
         console.error(this, status, err.toString());
@@ -53,7 +57,7 @@ var NewBoardForm = React.createClass({
   },
 
   render: function(){
-    var html = this.state.showForm ? this.addBoardForm() : this.hiddenBoardForm();
+    var html = this.state.collapseForm ? this.addBoardForm() : this.hiddenBoardForm();
     return (
       <div className="col-md-3">
         {html}

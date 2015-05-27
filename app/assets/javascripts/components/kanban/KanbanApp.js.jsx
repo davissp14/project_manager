@@ -7,10 +7,12 @@ var KanbanApp = React.createClass({
   },
 
   getInitialState: function(){
-    return { data: [] }
+    return { 
+      data: []
+    }
   },
 
-  componentWillMount: function(){
+  componentDidMount: function(){
     this.loadDataFromServer();
   },
 
@@ -40,10 +42,14 @@ var KanbanApp = React.createClass({
 
     });
 
+    var NewBoard = this.state.data.length < 4 ? 
+      <NewBoardForm kanban_id={this.props.kanban_id} kanban={this} /> : 
+      '';
+
     return (
       <div className="row">
         {Boards}
-        <NewBoardForm kanban_id={this.props.kanban_id} kanban={this}  />
+        {NewBoard}
       </div>
     );
  }
