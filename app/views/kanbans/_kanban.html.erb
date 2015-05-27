@@ -1,7 +1,7 @@
 
-<li class="list-group-item sprints">
+<li class="list-group-item kanbans">
 
-  <span class='sprint-title'>
+  <span class='kanban-title'>
     <%= link_to kanban.name, project_kanban_path(current_project, kanban) %>
     <br />
     <small> <%= truncate(kanban.description, length: 50) %> </small>
@@ -10,4 +10,13 @@
   <% if kanban.owner %>
     <%= image_tag current_user.gravatar_url, size: '25x25' %>
   <% end %>
+
+  <span class='kanban-actions'>
+    <%= link_to project_kanban_path(current_project, kanban), class: 'btn btn-default btn-sm' do %>
+      <i class="fa fa-folder"></i> View
+    <% end %>
+    <%= link_to '#', class: 'btn btn-default btn-sm' do %>
+      <i class="fa fa-archive"></i> Archive
+    <% end %>
+  </span>
 </li>

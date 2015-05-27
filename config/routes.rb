@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {registrations: 'users/registrations'}
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   root 'projects#index'
   resources :projects do
     resources :kanbans do 
-      post 'toggle_task'
+      resources :cards
+      resources :boards, only: [:index, :create, :destroy, :update]
     end
     resources :tasks do 
       put :sort, on: :collection

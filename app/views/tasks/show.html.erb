@@ -10,7 +10,7 @@
          <div class="col-lg-5">
               <dl class='dl-horizontal'>
                 <dt> Status: </dt>
-                <dd><h5 style='margin: 0;'><span class="label label-active">Active</span></h5></dd>
+                <dd><h4 style='margin: 0;'><span class="label label-active">Active</span></h4></dd>
               </dl>
           </div>
         </div>
@@ -21,7 +21,7 @@
               <dt> Task type: </dt>
               <dd> <%= @task.task_type %> </dd>
               <dt> Created by: </dt>
-              <dd> <%= @task.user.name %></dt>
+              <dd> <%= @task.user.slug %></dt>
               <dt> Comments: </dt>
               <dd> <%= @task.comments.size %></dt>
             </dl>
@@ -48,50 +48,9 @@
           </div>
         </div>
 
-        <div class='form-box'>
-          <div class='form-box-content' style='padding-left: 0;'>
+        <h3> Comments </h3>
+        <%= react_component('CommentBox', { url: project_task_comments_url(current_project, @task) } ) %>
 
-            <h3> Comments </h3>
-            <% if @task.comments.any? %>
-              <% @task.comments.each do |comment| %>
-                <div class='comment-box'>              
-                  <span class='comment-icon'>
-                    <%= image_tag comment.user.gravatar_url, size: '40x40', style: 'border-radius: 25px;' %>
-                  </span>
-                
-                  <span class='comment-poster'>
-                    <strong><%=comment.user.name%> </strong> 
-                    <br />
-                    <small>
-                      commented on <%= comment.created_at.strftime('%m/%d/%Y %I:%M%P') %>
-                    </small>
-                    <div class='comment-text'>
-                      <%= comment.text %>
-                    </div>
-                  </span>
-                </div>
-              <% end %>
-            <% else %>
-              <div class='empty-comments'>
-                <p>No comments found.</p>
-              </div>
-            <% end %>
-
-            <div class='form-box'>
-              <div class='form-box-content' style='padding-left: 0;'>
-                <%= simple_form_for Comment.new, url: project_task_comments_path(current_project, @task) do |f| %>
-                    <%= f.input :text, label: false, placeholder: "Leave a comment" %>
-
-                    <div style="text-align: right;">
-                      <%= f.submit "Comment", class: 'btn btn-primary btn-md' %>
-                    </div>
-                <% end %>
-              </div>
-            </div>
-
-          </div>
-        </div> 
-        
       </div> 
     </div>
   </div>

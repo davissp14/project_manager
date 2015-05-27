@@ -14,12 +14,7 @@ class TasksController < ApplicationController
 
     if @task.valid?
       @task.save
-      if @task.milestone.present?
-        redirect_to project_milestone_path(current_project, @task.milestone)
-      else
-        redirect_to project_tasks_path(current_project, @task)
-      end
-      
+      redirect_to project_tasks_path(current_project, @task)
     else
       render :new
     end

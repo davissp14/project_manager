@@ -1,31 +1,26 @@
+<%= render layout: 'shared/form', locals: { title: 'Create new task.'} do %>
 
-
-<div class="item-container">
-    <div class="sub-header narrow"> <strong>Create a new task</strong> </div>
-
-    <%= simple_form_for @task, url: project_tasks_path(@project, @task), html: {role: 'form'} do |f| %>
-        
-      <%= f.input :name, placeholder: "Task name", maxlength: 50 %>
-      <%= f.input :task_type do %>
-        <%= f.select :task_type, ['Feature', 'Bug', 'Chore'], {}, { class: 'form-control'} %>
-      <% end %>
-      <%= f.input :points do %>
-        <%= f.select :points, [['1 point', 1], ['2 points', 2], ['3 points', 3]], {}, { class: 'form-control'} %>
-      <% end %>
-      <%= f.input :priority_status  do %>
-        <%= f.select :priority_status, [['High', 3], ["Low", 1], ["None", 2]], {}, { class: 'form-control'} %>
-      <% end %>
-
-      <%= f.input :description, placeholder: "Task description" %>
-
-      <%= form_footer do %>
-        <%= link_to "Cancel", 
-          project_tasks_path(current_project), 
-          class: 'btn btn-default btn-md destroy',
-          style: 'font-weight: bold;' %>
-        <%= f.submit "Create", class: 'btn btn-primary' %>
-      <% end %>
+  <%= simple_form_for @task, url: project_tasks_path(@project, @task), html: {role: 'form'} do |f| %>
       
-    <% end %>
-</div>
+    <%= f.input :name, placeholder: "Task name", maxlength: 50 %>
 
+    <%= f.input :task_type do %>
+      <%= f.select :task_type, ['Feature', 'Bug', 'Chore'], {}, { class: 'form-control'} %>
+    <% end %>
+
+    <%= f.input :priority_status  do %>
+      <%= f.select :priority_status, [['High', 3], ["Low", 1], ["None", 2]], {}, { class: 'form-control'} %>
+    <% end %>
+
+    <%= f.input :description, placeholder: "Task description" %>
+
+    <%= form_footer do %>
+      <%= link_to "Cancel", 
+        project_tasks_path(current_project), 
+        class: 'btn btn-default btn-md destroy',
+        style: 'font-weight: bold;' %>
+      <%= f.submit "Create", class: 'btn btn-active' %>
+    <% end %>
+  <% end %>
+
+<% end %>

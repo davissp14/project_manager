@@ -6,6 +6,10 @@ body {
   overflow-x: hidden;
 }
 
+.btn {
+  border-radius: 0;
+}
+
 
 #wrapper {
   padding-left: 200px;
@@ -159,7 +163,4 @@ li.side-nav:hover {
   }
 }
 
-.label-active, .btn-active {
-  background-color: #1ab394;
-  color: #fff;
-}
+

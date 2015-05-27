@@ -17,7 +17,7 @@ class KanbansController < ApplicationController
 
   def show
     @kanban = current_project.kanbans.find(params[:id])
-    @tasks = @kanban.kanban_tasks
+    @boards = @kanban.boards
     
     add_breadcrumb '<strong>kanban details</strong>'.html_safe
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517194516) do
+ActiveRecord::Schema.define(version: 20150526233529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,20 @@ ActiveRecord::Schema.define(version: 20150517194516) do
   create_table "accounts", force: :cascade do |t|
     t.integer  "owner_id"
     t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "boards", force: :cascade do |t|
+    t.integer  "kanban_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.integer  "board_id"
+    t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,15 +53,6 @@ ActiveRecord::Schema.define(version: 20150517194516) do
     t.datetime "created_at",                    null: false
     t.datetime "updated_at",                    null: false
     t.string   "status",     default: "active"
-  end
-
-  create_table "kanban_tasks", force: :cascade do |t|
-    t.integer "project_id"
-    t.integer "kanban_id"
-    t.string  "name"
-    t.string  "status"
-    t.string  "task_type"
-    t.text    "description"
   end
 
   create_table "kanbans", force: :cascade do |t|
@@ -109,6 +114,8 @@ ActiveRecord::Schema.define(version: 20150517194516) do
     t.datetime "updated_at"
     t.string   "name"
     t.integer  "account_id"
+    t.string   "slug"
+    t.string   "profile_icon"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

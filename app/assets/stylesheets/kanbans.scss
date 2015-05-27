@@ -2,6 +2,24 @@
 // // They will automatically be included in application.css.
 // // You can use Sass (SCSS) here: http://sass-lang.com/
 
+li.kanbans {
+  span.kanban-title {
+    text-align: left; 
+  }
+
+  span.kanban-owner {
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  span.kanban-actions {
+    text-align: right; 
+    vertical-align: middle;
+  }
+}
+
+
+
 li.kanban-tasks {
   display: block;
 }
@@ -14,6 +32,11 @@ li.kanban-tasks .kanban-task-owner {
   vertical-align: middle;
   width: 40px;
 
+  img {
+    border-radius: 25px;
+    height: 40px;
+    width: 40px;
+  }
 }
 
 li.kanban-tasks .kanban-task-name {
@@ -32,4 +55,22 @@ li.kanban-tasks .kanban-task-actions {
   vertical-align: middle;
   width: 70px;
   padding-top: 10px;
+}
+
+.example-enter {
+  opacity: 0.01;
+  transition: opacity .5s ease-in;
+}
+
+.example-enter.example-enter-active {
+  opacity: 1;
+}
+
+.example-leave {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+
+.example-leave.example-leave-active {
+  opacity: 0.01;
 }

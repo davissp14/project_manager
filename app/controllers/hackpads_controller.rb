@@ -11,6 +11,7 @@ class HackpadsController < ApplicationController
 
   def show 
     @hackpad = current_project.hackpads.find(params[:id])
+    add_breadcrumb "<strong>#{@hackpad.title}</strong>".html_safe
   end
 
   def new

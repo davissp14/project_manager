@@ -4,7 +4,17 @@
       <span>
         <%= image_tag current_user.gravatar_url, size: '50x50', style: 'border-radius: 25px;' %>
       </span>
-      <div><%= link_to current_user.name, '#' %></div>
+      <div><%= link_to current_user.account.name, '#' %>
+
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style='color: #8095a8; text-decoration: none;'><%= current_user.slug %> 
+          <span class="caret"></span>
+        </a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="#">Account settings</a></li>
+            <li class="divider"></li>
+            <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          </ul>
+      </div>
     </li>
 
     <% unless params[:controller] == 'projects' %>

@@ -44,14 +44,35 @@
   margin-top: 0;
   position: relative;
   padding: 0;
+
+  .btn-active, .label-active {
+    background-color: #1ab394;
+    color: #fff;
+  }
+
+  .btn-active:hover {
+      background-color: #1ab394;
+    color: #fff;
+  }
 }
 
 .form-box-content {
   background-color: #ffffff;
-  padding: 15px 10px 20px 10px;
+  padding: 0px 10px 20px 10px;
   border-color: #e7eaec;
   border-image: none;
   border-style: solid solid none;
   border-width: 1px 0px;
   clear: both;
-} 
+
+  .btn-active, .label-active {
+    background-color: #1ab394;
+    color: #fff;
+  }
+
+  .btn-active:hover {
+      background-color: #1ab394;
+    color: #fff;
+  }
+}
+

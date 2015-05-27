@@ -8,6 +8,8 @@ gem 'pg'
 
 gem 'simple_form'
 
+gem 'react-rails'
+
 gem 'devise'
 gem 'gravtastic'
 gem "oauth-plugin"
