@@ -31,11 +31,13 @@ var KanbanApp = React.createClass({
   },
 
   render: function() {
+    var kanban = this
     var Boards = this.state.data.map(function(board, index) {
       return (
         <Board key={index}
                   id={board.id}
                   kanban_id={board.kanban_id }
+                  kanban={kanban}
                   name={board.name}
                   cards={board.cards} />
       );

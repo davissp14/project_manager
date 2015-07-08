@@ -3,8 +3,63 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 
-.addCard {
- 
+li.card {
+  span.card-title {
+    text-align: left;
+    display: inline-block;
+    width: 225px;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+
+  span.card-options {
+    display: none;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 30px;
+    left: 105px;
+    z-index: 5;
+  }
+
+  span {
+    cursor: pointer;
+    color: #676a6c;
+    vertical-align: bottom;
+  }
+
+  ul.dropdown-menu {
+    padding: 10px;
+
+    .card-settings-title {
+      cursor: default;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .card-settings-title:hover {
+      cursor: default;
+    }
+  }
+}
+
+li.card:hover {
+  span.card-options {
+    display: inline-block;
+    margin-left: 5px;
+    color: #D8D8D8;
+    cursor: pointer;
+    text-align: right;
+    vertical-align: top;
+  }
+
+  span.card-options:hover {
+    i { color: black;}
+  }
+}
+
+
+.add-card {
   .kanban-text-area {
     border-radius: 5px;
     width: 100%;
@@ -14,4 +69,44 @@
     word-wrap: break-word;
   }
 
+  .btn {
+    margin: 3px;
+  }
+
 }
+
+.edit-board .btn {
+  margin-left: 3px;
+}
+
+
+form.edit-card-title {
+
+  .form-group {
+    padding-top: 10px;
+    width: 100%;
+  }
+
+  .pull-right {
+    padding-top: 10px;
+
+    .btn {
+      margin-left: 5px;
+    }
+  }
+
+  .kanban-text-area {
+    border-radius: 5px;
+    width: 100%;
+    border-color: #d9d9d9;
+    resize: none;
+    overflow: hidden;
+    word-wrap: break-word;
+  }
+}
+
+
+
+
+
+

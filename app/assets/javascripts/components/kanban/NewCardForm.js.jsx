@@ -11,6 +11,10 @@ var NewCardForm = React.createClass({
   addCard: function(){
     var self = this;
     var cardText = React.findDOMNode(this.refs.cardTitle).value.trim();
+    if (cardText == '') {
+      return
+    }
+    
     $.ajax({
       url: this.props.kanban_id + '/cards',
       type: 'POST',
@@ -25,10 +29,13 @@ var NewCardForm = React.createClass({
 
   showCardFormHTML: function(){
     return (
-      <div className='addCard'>
+      <div className='add-card'>
         <textarea className="kanban-text-area" ref='cardTitle'></textarea>
-        <button className='btn btn-default btn-xs' onClick={this.setCardFormState}>Cancel</button>
-        <button className='btn btn-active btn-xs' onClick={this.addCard}>Add</button>
+        <div className='pull-right'>
+          <button className='btn btn-default btn-xs' onClick={this.setCardFormState}>Cancel</button>
+          <button className='btn btn-active btn-xs' onClick={this.addCard}>Add</button>
+        </div>
+        <div className='clearfix'></div>
       </div>
     );  
   },

@@ -65,6 +65,8 @@ var Board = React.createClass({
       return (
         <Card key={index}
               id={card.id}
+              board={self}
+              board_id={self.props.id}
               kanban_id={self.props.kanban_id}
               title={card.title}
               deleteCard={self.deleteCard.bind(self, index)} />
@@ -73,20 +75,20 @@ var Board = React.createClass({
 
     return (
       <div className="col-md-3">
+        <div className={"drop drop-state-" + stateClass}
+            {...this.dropTargetFor(ItemTypes.CARD)}>
+          <div className='form-box active-board'>
+          
+            <BoardTitle id={this.props.id} name={this.props.name} kanban_id={this.props.kanban_id} kanban={this.props.kanban} />
+            
+            <div className='form-box-content'>
+              <ul className="list-group list-cards">
+                {cards}
+              </ul>
 
-        <div className='form-box active-board'>
-          <div className='form-box-title'>
-            <strong>{this.props.name}</strong>
-          </div>
-          <div className='form-box-content'>
-            <div className={"drop drop-state-" + stateClass}
-              {...this.dropTargetFor(ItemTypes.CARD)}>
+              <NewCardForm board={this} kanban_id={this.props.kanban_id} />
             </div>
-            <ul className="sortable list-group list-tasks">
-              {cards}
-            </ul>
-        
-            <NewCardForm board={this} kanban_id={this.props.kanban_id} />
+    
           </div>
         </div>
       </div>

@@ -20,5 +20,30 @@ class BoardsController < ApplicationController
     end 
   end
 
+  def update
+    kanban = current_project.kanbans.find(params[:kanban_id])
+    board = kanban.boards.find(params[:id])
+
+    board.update_attributes(name: params[:name])
+
+    respond_to do |format|
+      format.json { render json: board.to_json(include: [:cards]) }
+    end
+
+  end
+
+  def destroy
+    kanban = current_project.kanbans.find(params[:kanban_id])
+    board = kanban.boards.find(params[:id])
+
+    board.cards.destroy_all
+    board.destroy
+
+    respond_to do |format|
+      format.json { render json: kanban.boards.to_json(include: [:cards])}
+    end
+
+  end
+
 
 end

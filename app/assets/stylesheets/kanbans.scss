@@ -18,45 +18,19 @@ li.kanbans {
   }
 }
 
-
-
-li.kanban-tasks {
-  display: block;
+.add-board .btn {
+  margin: 3px;
 }
 
-li.kanban-tasks span {
 
-}
-
-li.kanban-tasks .kanban-task-owner {
-  vertical-align: middle;
-  width: 40px;
-
-  img {
-    border-radius: 25px;
-    height: 40px;
-    width: 40px;
+.add-board {
+  .pull-right {
+    padding-top: 5px;
   }
 }
 
-li.kanban-tasks .kanban-task-name {
-  width: 170px;
-  text-align: left;
-  word-wrap: break-word;
-  vertical-align: middle;
 
-  a {
-    font-weight: 400;
-  }
-}
-
-li.kanban-tasks .kanban-task-actions {
-  text-align: right;
-  vertical-align: middle;
-  width: 70px;
-  padding-top: 10px;
-}
-
+// Animations
 .example-enter {
   opacity: 0.01;
   transition: opacity .5s ease-in;
@@ -73,4 +47,15 @@ li.kanban-tasks .kanban-task-actions {
 
 .example-leave.example-leave-active {
   opacity: 0.01;
+}
+
+
+.drop-state-dragging {
+  opacity: 0.4;
+}
+
+.drop-state-hovering {
+  opacity: 1;
+  transition: opacity .2s ease-in;
+  z-index: 999;
 }

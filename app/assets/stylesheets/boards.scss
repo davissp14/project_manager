@@ -2,26 +2,50 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.form-box-title {
 
-.drop {
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+  form.edit-title {
+    .form-control {
+      width: 200px;
+    }
 
-.drop-state-dragging {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  margin: 10px;
-}
+    i {
+      padding-left: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
 
-.drop-state-hovering {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
-  margin: 10px;
-  z-index: 9990;
+  }
+
+  .edit-board .btn {
+    margin-left: 3px;
+  }
+
+  .edit-board .dropdown-menu {
+    position: absolute;
+    top: 45px;
+    right: 15px;
+    z-index: 5;
+  }
+
+  .edit-board, .edit-board a {
+    cursor: pointer;
+    color: #676a6c;
+    vertical-align: bottom;
+  }
+
+  ul.dropdown-menu {
+    padding: 10px;
+
+    .board-settings-title {
+      cursor: default;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .board-settings-title:hover {
+      cursor: default;
+    }
+  }
+
 }

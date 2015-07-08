@@ -39,10 +39,13 @@ var NewBoardForm = React.createClass({
     return (
       <div className='form-box'>
         <div className='form-box-title'>Add a board</div>
-        <div className='form-box-content'>
+        <div className='form-box-content add-board'>
           <input type='text' className='form-control' ref='name' />
-          <button className='btn btn-default btn-xs' onClick={this.setFormState}>Cancel</button>
-          <button className='btn btn-active btn-xs' onClick={this.addBoard}>Add</button>
+          <div className='pull-right'>
+            <button className='btn btn-default btn-xs' onClick={this.setFormState}>Cancel</button>
+            <button className='btn btn-active btn-xs' onClick={this.addBoard}>Add</button>
+          </div>
+          <div className='clearfix'></div>
         </div>
       </div>
     );
@@ -51,7 +54,7 @@ var NewBoardForm = React.createClass({
   hiddenBoardForm: function(){
     return (
       <div>
-      <a href='#' onClick={this.setFormState}> Add a board... </a>
+        <a href='#' onClick={this.setFormState}> Add a board... </a>
       </div>
     );
   },
