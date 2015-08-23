@@ -90,7 +90,7 @@ nav.navbar {
 }
 
 .row.page-heading {
-  padding: 0px 10px 20px 30px; 
+  padding: 0px 10px 20px 30px;
   border-top: solid 1px #e7eaec;
   border-bottom: solid 1px #e7eaec;
   background-color: #fff;
@@ -129,7 +129,7 @@ li.side-nav {
   padding: 15px 60px 15px 20px;
   cursor: pointer;
   font-weight: 600;
-  font-size: 14px; 
+  font-size: 14px;
 
   span.icon {
     display: inline-block;
@@ -143,20 +143,20 @@ li.side-nav {
 
   a {
      color: #a7b1c2;
-     text-decoration: none;    
+     text-decoration: none;
   }
 }
 
-li.side-nav:hover {
+li.side-nav:hover, li.side-nav.selected {
   background-color: #233645;
 
-  a { 
+  a {
     color: #fff;
   }
 }
 
 .empty-container {
-  padding: 100px; 
+  padding: 100px;
   text-align: center;
   background-color: #fff;
 
@@ -165,5 +165,3 @@ li.side-nav:hover {
     font-weight: bold;
   }
 }
-
-
