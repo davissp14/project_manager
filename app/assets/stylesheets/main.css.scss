@@ -123,7 +123,18 @@ li.profile {
   }
 }
 
-li.side-nav {
+
+// Gross Side nav styling.
+
+a.side-nav {
+  color: #a7b1c2;
+}
+
+a.side-nav:hover {
+  text-decoration: none
+}
+
+a.side-nav li {
   position: relative;
   text-align: left;
   padding: 15px 60px 15px 20px;
@@ -140,17 +151,12 @@ li.side-nav {
   span.text {
     text-align: left;
   }
-
-  a {
-     color: #a7b1c2;
-     text-decoration: none;
-  }
 }
 
-li.side-nav:hover, li.side-nav.selected {
+a.side-nav li:hover, a.side-nav li.selected {
   background-color: #233645;
 
-  a {
+  span {
     color: #fff;
   }
 }

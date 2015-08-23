@@ -18,31 +18,24 @@
     </li>
 
     <% unless params[:controller] == 'projects' %>
-      <li class="side-nav <%= "selected" if params[:controller] == 'feeds' %>">
-        <%= link_to project_feeds_path(current_project) do %>
-          <span class='icon'><i class="fa fa-newspaper-o"></i></span>
-          <span class='text'>Feeds</span>
-        <% end %>
-      </li>
-      <li class="side-nav <%= "selected" if params[:controller] == 'tasks' %>">
-        <%= link_to project_tasks_path(current_project) do %>
+      <%= link_to project_tasks_path(current_project), class: "side-nav" do %>
+        <li class="<%= "selected" if params[:controller] == 'tasks' %>">
           <span class='icon'><i class="fa fa-tasks"></i></span>
           <span class='text'>Tasks</span>
-        <% end %>
-      </li>
-      <li class="side-nav <%= "selected" if params[:controller] == 'kanbans' %>">
-        <%= link_to project_kanbans_path(current_project) do %>
-          <span class='icon'><i class="glyphicon glyphicon-blackboard"></i></span>
+        </li>
+      <% end %>
+      <%= link_to project_kanbans_path(current_project), class: "side-nav" do %>
+        <li class="<%= "selected" if params[:controller] == 'kanbans' %>">
+          <span class='icon'><i class="fa fa-tasks"></i></span>
           <span class='text'>Kanbans</span>
-        <% end %>
-      </li>
-
-      <li class="side-nav <%= "selected" if params[:controller] == 'hackpads' %>">
-        <%= link_to project_hackpads_path(current_project) do %>
-          <span class='icon'><i class="fa fa-paper-plane"></i></span>
-            <span class='text'>Hackpads</span>
-        <% end %>
-      </li>
+        </li>
+      <% end %>
+      <%= link_to project_hackpads_path(current_project), class: "side-nav" do %>
+        <li class="<%= "selected" if params[:controller] == 'hackpads' %>">
+          <span class='icon'><i class="fa fa-tasks"></i></span>
+          <span class='text'>Hackpads</span>
+        </li>
+      <% end %>
     <% end %>
   </ul>
 </div>

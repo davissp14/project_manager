@@ -19,7 +19,7 @@ class KanbansController < ApplicationController
     @kanban = current_project.kanbans.find(params[:id])
     @boards = @kanban.boards
     
-    add_breadcrumb '<strong>kanban details</strong>'.html_safe
+    add_breadcrumb "<strong>#{@kanban.name}</strong>".html_safe
   end
 
   def toggle_task
