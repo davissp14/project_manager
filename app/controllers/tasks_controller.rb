@@ -3,6 +3,7 @@ class TasksController < ApplicationController
 
   def new
     @task = current_project.tasks.new 
+    add_breadcrumb 'new'.html_safe
   end
 
   def index
@@ -22,7 +23,7 @@ class TasksController < ApplicationController
 
   def show
     @task = current_project.tasks.find(params[:id])
-    add_breadcrumb '<strong>Task details</strong>'.html_safe
+    add_breadcrumb 'task'.html_safe
   end
 
   def edit

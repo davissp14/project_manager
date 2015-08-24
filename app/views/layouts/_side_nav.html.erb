@@ -26,13 +26,13 @@
       <% end %>
       <%= link_to project_kanbans_path(current_project), class: "side-nav" do %>
         <li class="<%= "selected" if params[:controller] == 'kanbans' %>">
-          <span class='icon'><i class="fa fa-tasks"></i></span>
+          <span class='icon'><i class="glyphicon glyphicon-blackboard"></i></span>
           <span class='text'>Kanbans</span>
         </li>
       <% end %>
       <%= link_to project_hackpads_path(current_project), class: "side-nav" do %>
         <li class="<%= "selected" if params[:controller] == 'hackpads' %>">
-          <span class='icon'><i class="fa fa-tasks"></i></span>
+          <span class='icon'><i class="fa fa-paper-plane"></i></span>
           <span class='text'>Hackpads</span>
         </li>
       <% end %>

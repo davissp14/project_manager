@@ -1,5 +1,14 @@
-<%= simple_form_for @project, html: {role: 'form'} do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.submit "Create", class: 'btn btn-primary' %>
+
+<%= render layout: 'shared/form', locals: { title: 'Create new project.'} do %>
+	<%= simple_form_for @project, html: {role: 'form'} do |f| %>
+	    <%= f.input :name %>
+	    <%= f.input :description %>
+	    <%= form_footer do %>
+      		<%= link_to "Cancel", 
+        		projects_path, 
+        		class: 'btn btn-default btn-md destroy',
+        		style: 'font-weight: bold;' %>
+      	<%= f.submit "Create", class: 'btn btn-active' %>
+    	<% end %>
+	<% end %>
 <% end %>
