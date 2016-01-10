@@ -20,7 +20,7 @@ class ProjectsController < ApplicationController
     @project = current_account.projects.new(project_params)
 
     @project.save
-    redirect_to project_feeds_path(@project)
+    redirect_to project_tasks_path(@project)
   end
 
   private 
